@@ -1,6 +1,7 @@
 package com.scmitltda.sglfs.resourses;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.scmitltda.sglfs.domain.Resultado;
+import com.scmitltda.sglfs.dto.ResultadoDTO;
 import com.scmitltda.sglfs.services.ResultadoService;
 
 @RestController
@@ -19,10 +21,13 @@ public class ResultadoResource {
 	private ResultadoService resultadoService;
 	
 	@GetMapping
-	public ResponseEntity<List<Resultado>> findAll() {
+	public ResponseEntity<List<ResultadoDTO>> findAll() {
 		
 		List<Resultado> resultados = resultadoService.findAll();
 		
-		return ResponseEntity.ok().body(resultados);
+		List<ResultadoDTO> resultadosDto = 
+				resultados.stream().map(r -> new ResultadoDTO(r)).collect(Collectors.toList());
+		
+		return ResponseEntity.ok().body(resultadosDto);
 	}
 }
