@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.scmitltda.sglfs.domain.Resultado;
+import com.scmitltda.sglfs.dto.ResultadoDTO;
 import com.scmitltda.sglfs.repository.ResultadoRepository;
 import com.scmitltda.sglfs.services.exception.ObjectNotFoundException;
 
@@ -23,6 +24,16 @@ public class ResultadoService {
 	public Resultado findById(String id) {
 		Optional<Resultado> obj = resultadoRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Resultado não encontrado"));
+	}
+	
+	public Resultado insert(Resultado resultado) {
+		return resultadoRepository.insert(resultado);
+	}
+	
+	public Resultado fromDTO(ResultadoDTO resultadoDTO) {
+		return new Resultado(
+				resultadoDTO.getId(), resultadoDTO.getNumero(), resultadoDTO.getData(), resultadoDTO.getAcumulado(),
+				resultadoDTO.getValorAcumulado(), resultadoDTO.getProximoEstimativa(), resultadoDTO.getProximoData());
 	}
 
 }
