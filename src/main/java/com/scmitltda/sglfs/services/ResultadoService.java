@@ -35,5 +35,9 @@ public class ResultadoService {
 				resultadoDTO.getId(), resultadoDTO.getNumero(), resultadoDTO.getData(), resultadoDTO.getAcumulado(),
 				resultadoDTO.getValorAcumulado(), resultadoDTO.getProximoEstimativa(), resultadoDTO.getProximoData());
 	}
+	
+	public void delete(String id) {
+		resultadoRepository.deleteById(id);;
+	}
 
 }
