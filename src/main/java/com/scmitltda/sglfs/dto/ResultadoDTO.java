@@ -1,6 +1,7 @@
 package com.scmitltda.sglfs.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.scmitltda.sglfs.domain.Resultado;
 
@@ -14,6 +15,7 @@ public class ResultadoDTO implements Serializable {
 	private String id;
 	private String numero;
 	private String data;
+	List<Integer> sorteio;
 	private Boolean acumulado;
 	private Double valorAcumulado;
 	private Double proximoEstimativa;
@@ -25,6 +27,7 @@ public class ResultadoDTO implements Serializable {
 		this.id = resultado.getId();
 		this.numero = resultado.getNumero();
 		this.data = resultado.getData();
+		this.sorteio = resultado.getSorteio();
 		this.acumulado = resultado.getAcumulado();
 		this.valorAcumulado = resultado.getValorAcumulado();
 		this.proximoEstimativa = resultado.getProximoEstimativa();
@@ -53,6 +56,14 @@ public class ResultadoDTO implements Serializable {
 
 	public void setData(String data) {
 		this.data = data;
+	}
+
+	public List<Integer> getSorteio() {
+		return sorteio;
+	}
+
+	public void setSorteio(List<Integer> sorteio) {
+		this.sorteio = sorteio;
 	}
 
 	public Boolean getAcumulado() {

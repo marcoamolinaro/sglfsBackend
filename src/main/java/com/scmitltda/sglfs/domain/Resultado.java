@@ -1,6 +1,7 @@
 package com.scmitltda.sglfs.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -17,6 +18,7 @@ public class Resultado implements Serializable {
 	private String id;
 	private String numero;
 	private String data;
+	private List<Integer> sorteio;
 	private Boolean acumulado;
 	private Double valorAcumulado;
 	private Double proximoEstimativa;
@@ -24,12 +26,20 @@ public class Resultado implements Serializable {
 	
 	public Resultado() {}
 	
-	public Resultado(String id, String numero, String data, Boolean acumulado, Double valorAcumulado, Double proximoEstimativa,
+	public Resultado(
+			String id, 
+			String numero, 
+			String data,
+			List<Integer> sorteio,
+			Boolean acumulado, 
+			Double valorAcumulado, 
+			Double proximoEstimativa,
 			String proximoData) {
 		super();
 		this.id = id;
 		this.numero = numero;
 		this.data = data;
+		this.sorteio = sorteio;
 		this.acumulado = acumulado;
 		this.valorAcumulado = valorAcumulado;
 		this.proximoEstimativa = proximoEstimativa;
@@ -58,6 +68,14 @@ public class Resultado implements Serializable {
 
 	public void setData(String data) {
 		this.data = data;
+	}
+
+	public List<Integer> getSorteio() {
+		return sorteio;
+	}
+
+	public void setSorteio(List<Integer> sorteio) {
+		this.sorteio = sorteio;
 	}
 
 	public Boolean getAcumulado() {

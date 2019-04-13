@@ -35,24 +35,31 @@ public class ResultadoService {
 	}
 	
 	public Resultado update(Resultado resultado) {
-		Optional<Resultado> newResultado = resultadoRepository.findById(resultado.getId());
+		Resultado newResultado = this.findById(resultado.getId());
 		updateData(newResultado, resultado);
-		return resultadoRepository.save(newResultado.get());
+		return resultadoRepository.save(newResultado);
 	}
 	
-	private void updateData(Optional<Resultado> newResultado, Resultado resultado) {
-		newResultado.get().setNumero(resultado.getNumero());
-		newResultado.get().setData(resultado.getData());
-		newResultado.get().setAcumulado(resultado.getAcumulado());
-		newResultado.get().setValorAcumulado(resultado.getValorAcumulado());
-		newResultado.get().setProximoEstimativa(resultado.getProximoEstimativa());
-		newResultado.get().setProximoData(resultado.getProximoData());
+	private void updateData(Resultado newResultado, Resultado resultado) {
+		newResultado.setNumero(resultado.getNumero());
+		newResultado.setData(resultado.getData());
+		newResultado.setSorteio(resultado.getSorteio());
+		newResultado.setAcumulado(resultado.getAcumulado());
+		newResultado.setValorAcumulado(resultado.getValorAcumulado());
+		newResultado.setProximoEstimativa(resultado.getProximoEstimativa());
+		newResultado.setProximoData(resultado.getProximoData());
 	}
 
 	public Resultado fromDTO(ResultadoDTO resultadoDTO) {
 		return new Resultado(
-				resultadoDTO.getId(), resultadoDTO.getNumero(), resultadoDTO.getData(), resultadoDTO.getAcumulado(),
-				resultadoDTO.getValorAcumulado(), resultadoDTO.getProximoEstimativa(), resultadoDTO.getProximoData());
+				resultadoDTO.getId(), 
+				resultadoDTO.getNumero(), 
+				resultadoDTO.getData(), 
+				resultadoDTO.getSorteio(),
+				resultadoDTO.getAcumulado(),
+				resultadoDTO.getValorAcumulado(), 
+				resultadoDTO.getProximoEstimativa(), 
+				resultadoDTO.getProximoData());
 	}
 	
 
