@@ -30,14 +30,30 @@ public class ResultadoService {
 		return resultadoRepository.insert(resultado);
 	}
 	
+	public void delete(String id) {
+		resultadoRepository.deleteById(id);;
+	}
+	
+	public Resultado update(Resultado resultado) {
+		Optional<Resultado> newResultado = resultadoRepository.findById(resultado.getId());
+		updateData(newResultado, resultado);
+		return resultadoRepository.save(newResultado.get());
+	}
+	
+	private void updateData(Optional<Resultado> newResultado, Resultado resultado) {
+		newResultado.get().setNumero(resultado.getNumero());
+		newResultado.get().setData(resultado.getData());
+		newResultado.get().setAcumulado(resultado.getAcumulado());
+		newResultado.get().setValorAcumulado(resultado.getValorAcumulado());
+		newResultado.get().setProximoEstimativa(resultado.getProximoEstimativa());
+		newResultado.get().setProximoData(resultado.getProximoData());
+	}
+
 	public Resultado fromDTO(ResultadoDTO resultadoDTO) {
 		return new Resultado(
 				resultadoDTO.getId(), resultadoDTO.getNumero(), resultadoDTO.getData(), resultadoDTO.getAcumulado(),
 				resultadoDTO.getValorAcumulado(), resultadoDTO.getProximoEstimativa(), resultadoDTO.getProximoData());
 	}
 	
-	public void delete(String id) {
-		resultadoRepository.deleteById(id);;
-	}
 
 }
