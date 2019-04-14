@@ -48,6 +48,7 @@ public class ResultadoService {
 		newResultado.setRateio(resultado.getRateio());
 		newResultado.setAcumulado(resultado.getAcumulado());
 		newResultado.setValorAcumulado(resultado.getValorAcumulado());
+		newResultado.setCidades(resultado.getCidades());
 		newResultado.setProximoEstimativa(resultado.getProximoEstimativa());
 		newResultado.setProximoData(resultado.getProximoData());
 	}
@@ -62,6 +63,7 @@ public class ResultadoService {
 				resultadoDTO.getRateio(),
 				resultadoDTO.getAcumulado(),
 				resultadoDTO.getValorAcumulado(), 
+				resultadoDTO.getCidades(),
 				resultadoDTO.getProximoEstimativa(), 
 				resultadoDTO.getProximoData());
 	}

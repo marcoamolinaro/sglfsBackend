@@ -1,6 +1,7 @@
 package com.scmitltda.sglfs.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -23,6 +24,7 @@ public class Resultado implements Serializable {
 	private List<Double> rateio;
 	private Boolean acumulado;
 	private Double valorAcumulado;
+	List<ArrayList<String>> cidades;
 	private Double proximoEstimativa;
 	private String proximoData;
 	
@@ -36,7 +38,8 @@ public class Resultado implements Serializable {
 			List<Integer> ganhadores,
 			List<Double> rateio,
 			Boolean acumulado, 
-			Double valorAcumulado, 
+			Double valorAcumulado,
+			List<ArrayList<String>> cidades,
 			Double proximoEstimativa,
 			String proximoData) {
 		super();
@@ -48,6 +51,7 @@ public class Resultado implements Serializable {
 		this.rateio = rateio;
 		this.acumulado = acumulado;
 		this.valorAcumulado = valorAcumulado;
+		this.cidades = cidades;
 		this.proximoEstimativa = proximoEstimativa;
 		this.proximoData = proximoData;
 	}
@@ -114,6 +118,14 @@ public class Resultado implements Serializable {
 
 	public void setValorAcumulado(Double valorAcumulado) {
 		this.valorAcumulado = valorAcumulado;
+	}
+	
+	public List<ArrayList<String>> getCidades() {
+		return cidades;
+	}
+
+	public void setCidades(List<ArrayList<String>> cidades) {
+		this.cidades = cidades;
 	}
 
 	public Double getProximoEstimativa() {
