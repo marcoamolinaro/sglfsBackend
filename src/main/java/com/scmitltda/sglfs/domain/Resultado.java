@@ -19,6 +19,7 @@ public class Resultado implements Serializable {
 	private String numero;
 	private String data;
 	private List<Integer> sorteio;
+	private List<Integer> ganhadores;
 	private Boolean acumulado;
 	private Double valorAcumulado;
 	private Double proximoEstimativa;
@@ -31,6 +32,7 @@ public class Resultado implements Serializable {
 			String numero, 
 			String data,
 			List<Integer> sorteio,
+			List<Integer> ganhadores,
 			Boolean acumulado, 
 			Double valorAcumulado, 
 			Double proximoEstimativa,
@@ -40,6 +42,7 @@ public class Resultado implements Serializable {
 		this.numero = numero;
 		this.data = data;
 		this.sorteio = sorteio;
+		this.ganhadores = ganhadores;
 		this.acumulado = acumulado;
 		this.valorAcumulado = valorAcumulado;
 		this.proximoEstimativa = proximoEstimativa;
@@ -76,6 +79,14 @@ public class Resultado implements Serializable {
 
 	public void setSorteio(List<Integer> sorteio) {
 		this.sorteio = sorteio;
+	}
+
+	public List<Integer> getGanhadores() {
+		return ganhadores;
+	}
+
+	public void setGanhadores(List<Integer> ganhadores) {
+		this.ganhadores = ganhadores;
 	}
 
 	public Boolean getAcumulado() {

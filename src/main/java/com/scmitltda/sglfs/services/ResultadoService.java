@@ -44,6 +44,7 @@ public class ResultadoService {
 		newResultado.setNumero(resultado.getNumero());
 		newResultado.setData(resultado.getData());
 		newResultado.setSorteio(resultado.getSorteio());
+		newResultado.setGanhadores(resultado.getGanhadores());
 		newResultado.setAcumulado(resultado.getAcumulado());
 		newResultado.setValorAcumulado(resultado.getValorAcumulado());
 		newResultado.setProximoEstimativa(resultado.getProximoEstimativa());
@@ -56,11 +57,10 @@ public class ResultadoService {
 				resultadoDTO.getNumero(), 
 				resultadoDTO.getData(), 
 				resultadoDTO.getSorteio(),
+				resultadoDTO.getGanhadores(),
 				resultadoDTO.getAcumulado(),
 				resultadoDTO.getValorAcumulado(), 
 				resultadoDTO.getProximoEstimativa(), 
 				resultadoDTO.getProximoData());
 	}
-	
-
 }
