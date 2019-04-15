@@ -1,6 +1,6 @@
 // TODO
 
-- Create a new service to retrive and load database of a result or all results from "API de resultados loterias"
+- Create a new service to get a result or all results from "API de resultados loterias" and load it into database
 
 	Get last lotofacil result
 	lotodicas.com.br/api/[lotofacil|mega-sena|quina|dupla-sena|lotomania|timenania|dia-de-sorte]
