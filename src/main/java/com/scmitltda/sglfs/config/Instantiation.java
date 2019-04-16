@@ -19,7 +19,7 @@ public class Instantiation implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*
+	
 		resultadoRepository.deleteAll();
 		
 		List<Integer> sorteio = new ArrayList<Integer>();
@@ -72,7 +72,7 @@ public class Instantiation implements CommandLineRunner {
 		Resultado r2 = new Resultado(null, "2", "12-04-2019", sorteio, ganhadores, rateio, false, 0.00, cidades, 0.00, "14-04-2019");
 		
 		resultadoRepository.saveAll(Arrays.asList(r1, r2));
-		*/
+	
 	}
 
 }
