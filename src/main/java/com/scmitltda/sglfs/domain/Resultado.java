@@ -55,7 +55,7 @@ public class Resultado implements Serializable {
 	}
 
 	public void setData(String data) {
-		this.data = data.substring(5, 2) + "-" + data.substring(8, 2) + "-" + data.substring(0, 4);
+		this.data =  data.substring(8, 10) + "-" + data.substring(5, 7) + "-" + data.substring(0, 4);
 	}
 
 	public List<Integer> getSorteio() {
@@ -94,7 +94,5 @@ public class Resultado implements Serializable {
 	@Override
 	public String toString() {
 		return "Resultado [id=" + id + ", numero=" + numero + ", data=" + data + ", sorteio=" + sorteio + "]";
-	}
-	
-	
+	}	
 }

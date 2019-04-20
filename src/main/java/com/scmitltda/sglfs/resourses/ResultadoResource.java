@@ -84,6 +84,7 @@ public class ResultadoResource {
 	
 	@GetMapping(value = "/load")
 	public ResponseEntity<Void> load() {
+		
 		RestTemplate restTemplate = new RestTemplate();
 		
 		String loteria = "lotofacil";
@@ -95,7 +96,30 @@ public class ResultadoResource {
 		
 		ResultadoCaixa resultadoCaixa =  restTemplate.getForObject(uriUltimo, ResultadoCaixa.class, params);
 		
-		System.out.println(resultadoCaixa.toString());
+		Integer numero = Integer.parseInt(resultadoCaixa.getNumero());
+		
+		String uriByNumero = "https://www.lotodicas.com.br/api/{loteria}/{numero}";
+		
+		for (Integer i = numero; i > 0; i--) {
+			params.clear();
+			params.put("loteria", loteria);
+			params.put("numero", i.toString());
+			
+			resultadoCaixa =  restTemplate.getForObject(uriByNumero, ResultadoCaixa.class, params);
+			
+			//System.out.println(resultadoCaixa.toString());
+			
+			Resultado resultado = new Resultado();
+			
+			resultado.setNumero(resultadoCaixa.getNumero());
+			resultado.setData(resultadoCaixa.getData());
+			resultado.setSorteio(resultadoCaixa.getSorteio());
+			
+			//System.out.println(resultado.toString());
+			
+			resultadoService.insert(resultado);
+			
+		}
 		
 		return ResponseEntity.noContent().build();
 	}
