@@ -1,7 +1,9 @@
 package com.scmitltda.sglfs.resourses;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.scmitltda.sglfs.domain.Resultado;
@@ -77,5 +80,22 @@ public class ResultadoResource {
 		
 		return ResponseEntity.noContent().build();
 	}
-
+	
+	@GetMapping(value = "/load")
+	public ResponseEntity<Void> load() {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		String loteria = "lotofacil";
+		
+		String uriUltimo = "https://www.lotodicas.com.br/api/{loteria}";
+		
+		 Map<String, String> params = new HashMap<String, String>();
+		 params.put("loteria", loteria);
+		
+		ResultadoDTO resultadoDTO =  restTemplate.getForObject(uriUltimo, ResultadoDTO.class, params);
+		
+		System.out.println(resultadoDTO.toString());
+		
+		return ResponseEntity.noContent().build();
+	}
 }

@@ -19,7 +19,7 @@ public class ResultadoDTO implements Serializable {
 	private List<Integer> sorteio;
 	private List<Integer> ganhadores;
 	private List<Double> rateio;
-	private Boolean acumulado;
+	private String acumulado;
 	private Double valorAcumulado;
 	private List<ArrayList<String>> cidades;
 	private Double proximoEstimativa;
@@ -89,11 +89,11 @@ public class ResultadoDTO implements Serializable {
 		this.sorteio = sorteio;
 	}
 
-	public Boolean getAcumulado() {
+	public String getAcumulado() {
 		return acumulado;
 	}
 
-	public void setAcumulado(Boolean acumulado) {
+	public void setAcumulado(String acumulado) {
 		this.acumulado = acumulado;
 	}
 
@@ -127,6 +127,14 @@ public class ResultadoDTO implements Serializable {
 
 	public void setProximoData(String proximoData) {
 		this.proximoData = proximoData;
+	}
+
+	@Override
+	public String toString() {
+		return "ResultadoDTO [id=" + id + ", numero=" + numero + ", data=" + data + ", sorteio=" + sorteio
+				+ ", ganhadores=" + ganhadores + ", rateio=" + rateio + ", acumulado=" + acumulado + ", valorAcumulado="
+				+ valorAcumulado + ", cidades=" + cidades + ", proximoEstimativa=" + proximoEstimativa
+				+ ", proximoData=" + proximoData + "]";
 	}
 	
 	
