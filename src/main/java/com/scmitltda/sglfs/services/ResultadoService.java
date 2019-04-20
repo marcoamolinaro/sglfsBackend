@@ -44,7 +44,7 @@ public class ResultadoService {
 		newResultado.setNumero(resultado.getNumero());
 		newResultado.setData(resultado.getData());
 		newResultado.setSorteio(resultado.getSorteio());
-
+		newResultado.setRateio(resultado.getRateio());
 	}
 
 	public Resultado fromDTO(ResultadoDTO resultadoDTO) {
@@ -52,6 +52,7 @@ public class ResultadoService {
 				resultadoDTO.getId(), 
 				resultadoDTO.getNumero(), 
 				resultadoDTO.getData(), 
-				resultadoDTO.getSorteio());
+				resultadoDTO.getSorteio(),
+				resultadoDTO.getRateio());
 	}
 }

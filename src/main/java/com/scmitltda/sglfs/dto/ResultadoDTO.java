@@ -16,6 +16,7 @@ public class ResultadoDTO implements Serializable {
 	private String numero;
 	private String data;
 	private List<Integer> sorteio;
+	private List<Double> rateio;
 	
 	public ResultadoDTO() {}
 	
@@ -24,6 +25,7 @@ public class ResultadoDTO implements Serializable {
 		this.numero = resultado.getNumero();
 		this.data = resultado.getData();
 		this.sorteio = resultado.getSorteio();
+		this.rateio = resultado.getRateio();
 	}
 
 	public String getId() {
@@ -54,9 +56,21 @@ public class ResultadoDTO implements Serializable {
 		return sorteio;
 	}
 	
+	public void setSorteio(List<Integer> sorteio) {
+		this.sorteio = sorteio;
+	}
+
+	public List<Double> getRateio() {
+		return rateio;
+	}
+
+	public void setRateio(List<Double> rateio) {
+		this.rateio = rateio;
+	}
+
 	@Override
 	public String toString() {
-		return "ResultadoDTO [id=" + id + ", numero=" + numero + ", data=" + data + ", sorteio=" + sorteio + "]";
+		return "ResultadoDTO [id=" + id + ", numero=" + numero + ", data=" + data + ", sorteio=" + sorteio + rateio + "]";
 	}
 	
 	

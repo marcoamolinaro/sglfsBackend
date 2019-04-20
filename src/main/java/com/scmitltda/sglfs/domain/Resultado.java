@@ -19,6 +19,7 @@ public class Resultado implements Serializable {
 	private String numero;
 	private String data;
 	private List<Integer> sorteio;
+	private List<Double> rateio;
 	
 	public Resultado() {}
 	
@@ -26,12 +27,14 @@ public class Resultado implements Serializable {
 			String id, 
 			String numero, 
 			String data,
-			List<Integer> sorteio) {
+			List<Integer> sorteio,
+			List<Double> rateio) {
 		super();
 		this.id = id;
 		this.numero = numero;
 		this.data = data;
 		this.sorteio = sorteio;
+		this.rateio = rateio;
 	}
 
 	public String getId() {
@@ -66,6 +69,14 @@ public class Resultado implements Serializable {
 		this.sorteio = sorteio;
 	}
 
+	public List<Double> getRateio() {
+		return rateio;
+	}
+
+	public void setRateio(List<Double> rateio) {
+		this.rateio = rateio;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -93,6 +104,6 @@ public class Resultado implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Resultado [id=" + id + ", numero=" + numero + ", data=" + data + ", sorteio=" + sorteio + "]";
+		return "Resultado [id=" + id + ", numero=" + numero + ", data=" + data + ", sorteio=" + sorteio + rateio + "]";
 	}	
 }

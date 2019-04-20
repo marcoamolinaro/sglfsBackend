@@ -23,9 +23,15 @@ public class Instantiation implements CommandLineRunner {
 		for (Integer i = 1; i <= 15; i++) {
 			sorteio.add(i);
 		}
-	
-		Resultado r1 = new Resultado(null, "1", "10-04-2019", sorteio);
-		Resultado r2 = new Resultado(null, "2", "12-04-2019", sorteio);
+		
+		List<Double> rateio = new ArrayList<Double>();
+		
+		for (Double i = 0.01; i <= 5; i++) {
+			rateio.add(i);
+		}
+		
+		Resultado r1 = new Resultado(null, "1", "10-04-2019", sorteio, rateio);
+		Resultado r2 = new Resultado(null, "2", "12-04-2019", sorteio, rateio);
 		
 		resultadoRepository.saveAll(Arrays.asList(r1, r2));
 	*/

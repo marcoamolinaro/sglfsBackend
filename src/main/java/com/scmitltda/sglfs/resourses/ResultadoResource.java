@@ -114,6 +114,7 @@ public class ResultadoResource {
 			resultado.setNumero(resultadoCaixa.getNumero());
 			resultado.setData(resultadoCaixa.getData());
 			resultado.setSorteio(resultadoCaixa.getSorteio());
+			resultado.setRateio(resultadoCaixa.getRateio());
 			
 			//System.out.println(resultado.toString());
 			
