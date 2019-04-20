@@ -1,7 +1,6 @@
 package com.scmitltda.sglfs.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -20,13 +19,6 @@ public class Resultado implements Serializable {
 	private String numero;
 	private String data;
 	private List<Integer> sorteio;
-	private List<Integer> ganhadores;
-	private List<Double> rateio;
-	private String acumulado;
-	private Double valorAcumulado;
-	List<ArrayList<String>> cidades;
-	private Double proximoEstimativa;
-	private String proximoData;
 	
 	public Resultado() {}
 	
@@ -34,26 +26,12 @@ public class Resultado implements Serializable {
 			String id, 
 			String numero, 
 			String data,
-			List<Integer> sorteio,
-			List<Integer> ganhadores,
-			List<Double> rateio,
-			String acumulado, 
-			Double valorAcumulado,
-			List<ArrayList<String>> cidades,
-			Double proximoEstimativa,
-			String proximoData) {
+			List<Integer> sorteio) {
 		super();
 		this.id = id;
 		this.numero = numero;
 		this.data = data;
 		this.sorteio = sorteio;
-		this.ganhadores = ganhadores;
-		this.rateio = rateio;
-		this.acumulado = acumulado;
-		this.valorAcumulado = valorAcumulado;
-		this.cidades = cidades;
-		this.proximoEstimativa = proximoEstimativa;
-		this.proximoData = proximoData;
 	}
 
 	public String getId() {
@@ -77,7 +55,7 @@ public class Resultado implements Serializable {
 	}
 
 	public void setData(String data) {
-		this.data = data;
+		this.data = data.substring(5, 2) + "-" + data.substring(8, 2) + "-" + data.substring(0, 4);
 	}
 
 	public List<Integer> getSorteio() {
@@ -86,62 +64,6 @@ public class Resultado implements Serializable {
 
 	public void setSorteio(List<Integer> sorteio) {
 		this.sorteio = sorteio;
-	}
-
-	public List<Integer> getGanhadores() {
-		return ganhadores;
-	}
-
-	public void setGanhadores(List<Integer> ganhadores) {
-		this.ganhadores = ganhadores;
-	}
-
-	public List<Double> getRateio() {
-		return rateio;
-	}
-
-	public void setRateio(List<Double> rateio) {
-		this.rateio = rateio;
-	}
-
-	public String getAcumulado() {
-		return acumulado;
-	}
-
-	public void setAcumulado(String acumulado) {
-		this.acumulado = acumulado;
-	}
-
-	public Double getValorAcumulado() {
-		return valorAcumulado;
-	}
-
-	public void setValorAcumulado(Double valorAcumulado) {
-		this.valorAcumulado = valorAcumulado;
-	}
-	
-	public List<ArrayList<String>> getCidades() {
-		return cidades;
-	}
-
-	public void setCidades(List<ArrayList<String>> cidades) {
-		this.cidades = cidades;
-	}
-
-	public Double getProximoEstimativa() {
-		return proximoEstimativa;
-	}
-
-	public void setProximoEstimativa(Double proximoEstimativa) {
-		this.proximoEstimativa = proximoEstimativa;
-	}
-
-	public String getProximoData() {
-		return proximoData;
-	}
-
-	public void setProximoData(String proximoData) {
-		this.proximoData = proximoData;
 	}
 
 	@Override
@@ -171,10 +93,7 @@ public class Resultado implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Resultado [id=" + id + ", numero=" + numero + ", data=" + data + ", sorteio=" + sorteio
-				+ ", ganhadores=" + ganhadores + ", rateio=" + rateio + ", acumulado=" + acumulado + ", valorAcumulado="
-				+ valorAcumulado + ", cidades=" + cidades + ", proximoEstimativa=" + proximoEstimativa
-				+ ", proximoData=" + proximoData + "]";
+		return "Resultado [id=" + id + ", numero=" + numero + ", data=" + data + ", sorteio=" + sorteio + "]";
 	}
 	
 	

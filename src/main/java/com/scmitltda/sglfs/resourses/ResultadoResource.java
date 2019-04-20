@@ -20,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.scmitltda.sglfs.domain.Resultado;
+import com.scmitltda.sglfs.domain.ResultadoCaixa;
 import com.scmitltda.sglfs.dto.ResultadoDTO;
 import com.scmitltda.sglfs.services.ResultadoService;
 
@@ -92,9 +93,9 @@ public class ResultadoResource {
 		 Map<String, String> params = new HashMap<String, String>();
 		 params.put("loteria", loteria);
 		
-		ResultadoDTO resultadoDTO =  restTemplate.getForObject(uriUltimo, ResultadoDTO.class, params);
+		ResultadoCaixa resultadoCaixa =  restTemplate.getForObject(uriUltimo, ResultadoCaixa.class, params);
 		
-		System.out.println(resultadoDTO.toString());
+		System.out.println(resultadoCaixa.toString());
 		
 		return ResponseEntity.noContent().build();
 	}

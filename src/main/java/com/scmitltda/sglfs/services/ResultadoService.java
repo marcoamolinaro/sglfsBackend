@@ -44,13 +44,7 @@ public class ResultadoService {
 		newResultado.setNumero(resultado.getNumero());
 		newResultado.setData(resultado.getData());
 		newResultado.setSorteio(resultado.getSorteio());
-		newResultado.setGanhadores(resultado.getGanhadores());
-		newResultado.setRateio(resultado.getRateio());
-		newResultado.setAcumulado(resultado.getAcumulado());
-		newResultado.setValorAcumulado(resultado.getValorAcumulado());
-		newResultado.setCidades(resultado.getCidades());
-		newResultado.setProximoEstimativa(resultado.getProximoEstimativa());
-		newResultado.setProximoData(resultado.getProximoData());
+
 	}
 
 	public Resultado fromDTO(ResultadoDTO resultadoDTO) {
@@ -58,13 +52,6 @@ public class ResultadoService {
 				resultadoDTO.getId(), 
 				resultadoDTO.getNumero(), 
 				resultadoDTO.getData(), 
-				resultadoDTO.getSorteio(),
-				resultadoDTO.getGanhadores(),
-				resultadoDTO.getRateio(),
-				resultadoDTO.getAcumulado(),
-				resultadoDTO.getValorAcumulado(), 
-				resultadoDTO.getCidades(),
-				resultadoDTO.getProximoEstimativa(), 
-				resultadoDTO.getProximoData());
+				resultadoDTO.getSorteio());
 	}
 }
