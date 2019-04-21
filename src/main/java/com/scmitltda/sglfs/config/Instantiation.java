@@ -1,23 +1,23 @@
 package com.scmitltda.sglfs.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.scmitltda.sglfs.repository.ResultadoRepository;
+//import com.scmitltda.sglfs.repository.ResultadoRepository;
 
 @Configuration
 public class Instantiation implements CommandLineRunner {
 	
-	@Autowired
-	private ResultadoRepository resultadoRepository;
+	//@Autowired
+	//private ResultadoRepository resultadoRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
 		
+		/*
 		resultadoRepository.deleteAll();
 		
-		/*
 		List<Integer> sorteio = new ArrayList<Integer>();
 		
 		for (Integer i = 1; i <= 15; i++) {

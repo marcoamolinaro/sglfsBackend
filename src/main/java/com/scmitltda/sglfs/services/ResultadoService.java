@@ -21,6 +21,10 @@ public class ResultadoService {
 		return resultadoRepository.findAll();
 	}
 	
+	public void deleteAll() {
+		resultadoRepository.deleteAll();
+	}
+	
 	public Resultado findById(String id) {
 		Optional<Resultado> obj = resultadoRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Resultado não encontrado"));

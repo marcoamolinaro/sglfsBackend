@@ -83,7 +83,8 @@ public class ResultadoResource {
 	}
 	
 	@GetMapping(value = "/load")
-	public ResponseEntity<Void> load() {
+	public ResponseEntity<Void> loadAll() {
+		resultadoService.deleteAll();
 		
 		RestTemplate restTemplate = new RestTemplate();
 		
@@ -121,6 +122,34 @@ public class ResultadoResource {
 			resultadoService.insert(resultado);
 			
 		}
+		
+		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping(value = "/load/{numero}")
+	public ResponseEntity<Void> loadByNumber(@PathVariable String numero) {		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		String loteria = "lotofacil";
+		
+		String uriByNumero = "https://www.lotodicas.com.br/api/{loteria}/{numero}";
+		
+		 Map<String, String> params = new HashMap<String, String>();
+		 params.put("loteria", loteria);
+		 params.put("numero", numero);
+		
+		ResultadoCaixa resultadoCaixa =  restTemplate.getForObject(uriByNumero, ResultadoCaixa.class, params);
+		
+		Resultado resultado = new Resultado();
+			
+		resultado.setNumero(resultadoCaixa.getNumero());
+		resultado.setData(resultadoCaixa.getData());
+		resultado.setSorteio(resultadoCaixa.getSorteio());
+		resultado.setRateio(resultadoCaixa.getRateio());
+			
+		//System.out.println(resultado.toString());
+			
+		resultadoService.insert(resultado);
 		
 		return ResponseEntity.noContent().build();
 	}
