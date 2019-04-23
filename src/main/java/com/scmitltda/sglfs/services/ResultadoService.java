@@ -21,6 +21,10 @@ public class ResultadoService {
 		return resultadoRepository.findAll();
 	}
 	
+	public List<Resultado> findByNumero(String numero) {
+		return resultadoRepository.findByNumero(numero);
+	}
+
 	public void deleteAll() {
 		resultadoRepository.deleteAll();
 	}

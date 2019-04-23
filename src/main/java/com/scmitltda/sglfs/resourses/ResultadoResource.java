@@ -49,6 +49,17 @@ public class ResultadoResource {
 		
 		return ResponseEntity.ok().body(new ResultadoDTO(resultado));
 	}
+	
+	@GetMapping(value = "/{numero}")
+	public ResponseEntity<List<ResultadoDTO>> findByNumero(@PathVariable String numero) {
+		
+		List<Resultado> resultados = resultadoService.findByNumero(numero);
+		
+		List<ResultadoDTO> resultadosDto = 
+				resultados.stream().map(r -> new ResultadoDTO(r)).collect(Collectors.toList());
+		
+		return ResponseEntity.ok().body(resultadosDto);
+	}
 
 	@PostMapping
 	public ResponseEntity<Void> insert(@RequestBody ResultadoDTO resultadoDTO) {
@@ -127,7 +138,16 @@ public class ResultadoResource {
 	}
 	
 	@GetMapping(value = "/load/{numero}")
-	public ResponseEntity<Void> loadByNumber(@PathVariable String numero) {		
+	public ResponseEntity<Void> loadByNumber(@PathVariable String numero) {	
+		
+		List<Resultado> resultados = resultadoService.findByNumero(numero);
+		
+		if (resultados.size() > 0) {
+			//Throw DuplicateObjectException("Já existe este número na base de dados.");
+			System.out.println("Numero: [" + numero + "] já existe na base de dados");
+			return ResponseEntity.noContent().build();
+		}
+		
 		RestTemplate restTemplate = new RestTemplate();
 		
 		String loteria = "lotofacil";
