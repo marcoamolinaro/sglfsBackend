@@ -125,7 +125,6 @@ public class ResultadoResource {
 			resultado.setRateio(resultadoCaixa.getRateio());
 			
 			resultadoService.insert(resultado);
-			
 		}
 		
 		return ResponseEntity.noContent().build();
@@ -138,7 +137,6 @@ public class ResultadoResource {
 		
 		if (resultado != null) {
 			System.out.println("Numero: [" + numero + "] já existe na base de dados");
-			//return ResponseEntity.noContent().build();
 			throw new ObjectFoundException("Numero [" + numero + "] já existe na base de dados.");
 		}
 		
