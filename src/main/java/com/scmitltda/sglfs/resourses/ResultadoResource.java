@@ -23,6 +23,7 @@ import com.scmitltda.sglfs.domain.Resultado;
 import com.scmitltda.sglfs.domain.ResultadoCaixa;
 import com.scmitltda.sglfs.dto.ResultadoDTO;
 import com.scmitltda.sglfs.services.ResultadoService;
+import com.scmitltda.sglfs.services.exception.ObjectFoundException;
 
 @RestController
 @RequestMapping(value="/resultados")
@@ -51,14 +52,11 @@ public class ResultadoResource {
 	}
 	
 	@GetMapping(value = "/{numero}")
-	public ResponseEntity<List<ResultadoDTO>> findByNumero(@PathVariable String numero) {
+	public ResponseEntity<ResultadoDTO> findByNumero(@PathVariable String numero) {
 		
-		List<Resultado> resultados = resultadoService.findByNumero(numero);
+		Resultado resultado = resultadoService.findByNumero(numero);
 		
-		List<ResultadoDTO> resultadosDto = 
-				resultados.stream().map(r -> new ResultadoDTO(r)).collect(Collectors.toList());
-		
-		return ResponseEntity.ok().body(resultadosDto);
+		return ResponseEntity.ok().body(new ResultadoDTO(resultado));
 	}
 
 	@PostMapping
@@ -119,16 +117,12 @@ public class ResultadoResource {
 			
 			resultadoCaixa =  restTemplate.getForObject(uriByNumero, ResultadoCaixa.class, params);
 			
-			//System.out.println(resultadoCaixa.toString());
-			
 			Resultado resultado = new Resultado();
 			
 			resultado.setNumero(resultadoCaixa.getNumero());
 			resultado.setData(resultadoCaixa.getData());
 			resultado.setSorteio(resultadoCaixa.getSorteio());
 			resultado.setRateio(resultadoCaixa.getRateio());
-			
-			//System.out.println(resultado.toString());
 			
 			resultadoService.insert(resultado);
 			
@@ -140,12 +134,12 @@ public class ResultadoResource {
 	@GetMapping(value = "/load/{numero}")
 	public ResponseEntity<Void> loadByNumber(@PathVariable String numero) {	
 		
-		List<Resultado> resultados = resultadoService.findByNumero(numero);
+		Resultado resultado = resultadoService.findByNumero(numero);
 		
-		if (resultados.size() > 0) {
-			//Throw DuplicateObjectException("Já existe este número na base de dados.");
+		if (resultado != null) {
 			System.out.println("Numero: [" + numero + "] já existe na base de dados");
-			return ResponseEntity.noContent().build();
+			//return ResponseEntity.noContent().build();
+			throw new ObjectFoundException("Numero [" + numero + "] já existe na base de dados.");
 		}
 		
 		RestTemplate restTemplate = new RestTemplate();
@@ -160,7 +154,7 @@ public class ResultadoResource {
 		
 		ResultadoCaixa resultadoCaixa =  restTemplate.getForObject(uriByNumero, ResultadoCaixa.class, params);
 		
-		Resultado resultado = new Resultado();
+		resultado = new Resultado();
 			
 		resultado.setNumero(resultadoCaixa.getNumero());
 		resultado.setData(resultadoCaixa.getData());

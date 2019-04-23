@@ -21,7 +21,7 @@ public class ResultadoService {
 		return resultadoRepository.findAll();
 	}
 	
-	public List<Resultado> findByNumero(String numero) {
+	public Resultado findByNumero(String numero) {
 		return resultadoRepository.findByNumero(numero);
 	}
 

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.scmitltda.sglfs.services.exception.ObjectFoundException;
 import com.scmitltda.sglfs.services.exception.ObjectNotFoundException;
 
 @ControllerAdvice
@@ -19,6 +20,18 @@ public class ResourceExceptionHandler {
 		
 		StandardError err = 
 				new StandardError(System.currentTimeMillis(), status.value(), "Não Encontrado", e.getMessage(), request.getRequestURI());
+		
+		return ResponseEntity.status(status).body(err);
+		
+	}
+	
+	@ExceptionHandler(ObjectFoundException.class)
+	public ResponseEntity<StandardError> objectFound(ObjectFoundException e, HttpServletRequest request) {
+		
+		HttpStatus status = HttpStatus.FOUND;
+		
+		StandardError err = 
+				new StandardError(System.currentTimeMillis(), status.value(), "Já existe no banco de dados", e.getMessage(), request.getRequestURI());
 		
 		return ResponseEntity.status(status).body(err);
 		
