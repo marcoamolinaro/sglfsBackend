@@ -136,7 +136,6 @@ public class ResultadoResource {
 		Resultado resultado = resultadoService.findByNumero(numero);
 		
 		if (resultado != null) {
-			System.out.println("Numero: [" + numero + "] já existe na base de dados");
 			throw new ObjectFoundException("Numero [" + numero + "] já existe na base de dados.");
 		}
 		
@@ -158,8 +157,6 @@ public class ResultadoResource {
 		resultado.setData(resultadoCaixa.getData());
 		resultado.setSorteio(resultadoCaixa.getSorteio());
 		resultado.setRateio(resultadoCaixa.getRateio());
-			
-		//System.out.println(resultado.toString());
 			
 		resultadoService.insert(resultado);
 		
