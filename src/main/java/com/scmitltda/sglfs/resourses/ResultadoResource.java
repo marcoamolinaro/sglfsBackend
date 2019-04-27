@@ -43,7 +43,7 @@ public class ResultadoResource {
 		return ResponseEntity.ok().body(resultadosDto);
 	}
 	
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/id/{id}")
 	public ResponseEntity<ResultadoDTO> findById(@PathVariable String id) {
 		
 		Resultado resultado = resultadoService.findById(id);
