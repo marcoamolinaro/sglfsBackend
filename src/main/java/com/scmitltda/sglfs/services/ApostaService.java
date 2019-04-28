@@ -1,12 +1,15 @@
 package com.scmitltda.sglfs.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.scmitltda.sglfs.domain.Aposta;
+import com.scmitltda.sglfs.dto.ApostaDTO;
 import com.scmitltda.sglfs.repository.ApostaRepository;
+import com.scmitltda.sglfs.services.exception.ObjectNotFoundException;
 
 @Service
 public class ApostaService {
@@ -18,48 +21,40 @@ public class ApostaService {
 		return apostaRepository.findAll();
 	}
 	
-	/*
-	public Aposta findByNumero(String numero) {
-		return apostaRepository.findByNumero(numero);
-	}
-
-	public void deleteAll() {
-		apostaRepository.deleteAll();
-	}
-	
 	public Aposta findById(String id) {
 		Optional<Aposta> obj = apostaRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Aposta não encontrado"));
 	}
 	
-	public Aposta insert(Aposta resultado) {
-		return apostaRepository.insert(resultado);
+	public Aposta insert(Aposta aposta) {
+		return apostaRepository.insert(aposta);
+	}
+	
+	public Aposta fromDTO(ApostaDTO apostaDTO) {
+		return new Aposta(
+				apostaDTO.getId(), 
+				apostaDTO.getNumero(), 
+				apostaDTO.getData(), 
+				apostaDTO.getSorteio());
+	}
+
+	public Aposta update(Aposta aposta) {
+		Aposta newAposta = this.findById(aposta.getId());
+		updateData(newAposta, aposta);
+		return apostaRepository.save(newAposta);
+	}
+	
+	private void updateData(Aposta newAposta, Aposta aposta) {
+		newAposta.setNumero(aposta.getNumero());
+		newAposta.setData(aposta.getData());
+		newAposta.setSorteio(aposta.getSorteio());
 	}
 	
 	public void delete(String id) {
 		apostaRepository.deleteById(id);;
 	}
 	
-	public Aposta update(Aposta resultado) {
-		Aposta newAposta = this.findById(resultado.getId());
-		updateData(newAposta, resultado);
-		return apostaRepository.save(newAposta);
+	public List<Aposta> findByNumero(String numero) {
+		return apostaRepository.findByNumero(numero);
 	}
-	
-	private void updateData(Aposta newAposta, Aposta resultado) {
-		newAposta.setNumero(resultado.getNumero());
-		newAposta.setData(resultado.getData());
-		newAposta.setSorteio(resultado.getSorteio());
-		newAposta.setRateio(resultado.getRateio());
-	}
-
-	public Aposta fromDTO(ApostaDTO resultadoDTO) {
-		return new Aposta(
-				resultadoDTO.getId(), 
-				resultadoDTO.getNumero(), 
-				resultadoDTO.getData(), 
-				resultadoDTO.getSorteio(),
-				resultadoDTO.getRateio());
-	}
-	*/
 }
