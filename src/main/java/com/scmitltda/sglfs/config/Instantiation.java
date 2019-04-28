@@ -49,20 +49,20 @@ public class Instantiation implements CommandLineRunner {
 		
 		apostaRepository.deleteAll();
 		
-		List<Integer> sorteio;
-		List<List<Integer>> sorteios = new ArrayList<List<Integer>>();
+		List<Integer> dezenaApostada;
+		List<List<Integer>> dezenasApostadas = new ArrayList<List<Integer>>();
 		
 		for (int k = 0; k <= 3; k++) {
-			sorteio = new ArrayList<Integer>();
+			dezenaApostada = new ArrayList<Integer>();
 			for (Integer i = 1; i <= 15; i++) {
-				sorteio.add(i+k);
+				dezenaApostada.add(i+k);
 			}
-			sorteios.add(sorteio);
+			dezenasApostadas.add(dezenaApostada);
 		}	
 		
-		Aposta a1 = new Aposta(null, "1", "10-04-2019", sorteios);
-		Aposta a2 = new Aposta(null, "2", "12-04-2019", sorteios);
-		Aposta a3 = new Aposta(null, "3", "14-04-2019", sorteios);
+		Aposta a1 = new Aposta(null, "1", "10-04-2019", dezenasApostadas);
+		Aposta a2 = new Aposta(null, "2", "12-04-2019", dezenasApostadas);
+		Aposta a3 = new Aposta(null, "3", "14-04-2019", dezenasApostadas);
 		
 		apostaRepository.saveAll(Arrays.asList(a1, a2, a3));
 	}

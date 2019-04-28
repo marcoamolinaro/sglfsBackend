@@ -18,7 +18,7 @@ public class Aposta implements Serializable {
 	private String id;
 	private String numero;
 	private String data;
-	private List<List<Integer>> sorteio;
+	private List<List<Integer>> dezenasApostadas;
 	
 	public Aposta() {}
 	
@@ -26,12 +26,12 @@ public class Aposta implements Serializable {
 			String id, 
 			String numero, 
 			String data,
-			List<List<Integer>> sorteio) {
+			List<List<Integer>> dezenasApostadas) {
 		super();
 		this.id = id;
 		this.numero = numero;
 		this.data = data;
-		this.sorteio = sorteio;
+		this.dezenasApostadas = dezenasApostadas;
 	}
 
 	public String getId() {
@@ -58,12 +58,12 @@ public class Aposta implements Serializable {
 		this.data =  data;
 	}
 
-	public List<List<Integer>> getSorteio() {
-		return sorteio;
+	public List<List<Integer>> getDezenasApostadas() {
+		return dezenasApostadas;
 	}
 
-	public void setSorteio(List<List<Integer>> sorteio) {
-		this.sorteio = sorteio;
+	public void setDezenasApostadas(List<List<Integer>> dezenasApostadas) {
+		this.dezenasApostadas = dezenasApostadas;
 	}
 
 	@Override
@@ -93,6 +93,6 @@ public class Aposta implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Aposta [id=" + id + ", numero=" + numero + ", data=" + data + ", sorteio=" + sorteio + "]";
+		return "Aposta [id=" + id + ", numero=" + numero + ", data=" + data + ", dezenasApostadas=" + dezenasApostadas + "]";
 	}
 }
