@@ -58,7 +58,7 @@ public class Resultado implements Serializable {
 	}
 
 	public void setData(String data) {
-		this.data =  data.substring(8, 10) + "-" + data.substring(5, 7) + "-" + data.substring(0, 4);
+		this.data =  data;
 	}
 
 	public List<Integer> getSorteio() {

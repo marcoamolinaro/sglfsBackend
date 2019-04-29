@@ -1,15 +1,19 @@
-package com.scmitltda.sglfs.domain;
+package com.scmitltda.sglfs.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "resultado_caixa")
-public class ResultadoCaixa implements Serializable {
-	
+import com.scmitltda.sglfs.domain.ResultadoCaixa;
+
+/**
+ * @author marco
+ *
+ */
+public class ResultadoCaixaDTO implements Serializable{
+
 	/**
 	 * 
 	 */
@@ -27,33 +31,22 @@ public class ResultadoCaixa implements Serializable {
 	List<ArrayList<String>> cidades;
 	private Double proximoEstimativa;
 	private String proximoData;
+
+	public ResultadoCaixaDTO() {}
 	
-	public ResultadoCaixa() {}
-	
-	public ResultadoCaixa(
-			String id, 
-			String numero, 
-			String data,
-			List<Integer> sorteio,
-			List<Integer> ganhadores,
-			List<Double> rateio,
-			String acumulado, 
-			Double valorAcumulado,
-			List<ArrayList<String>> cidades,
-			Double proximoEstimativa,
-			String proximoData) {
-		super();
-		this.id = id;
-		this.numero = numero;
-		this.data = data;
-		this.sorteio = sorteio;
-		this.ganhadores = ganhadores;
-		this.rateio = rateio;
-		this.acumulado = acumulado;
-		this.valorAcumulado = valorAcumulado;
-		this.cidades = cidades;
-		this.proximoEstimativa = proximoEstimativa;
-		this.proximoData = proximoData;
+	public ResultadoCaixaDTO(ResultadoCaixa resultadoCaixa) {
+		this.id = resultadoCaixa.getId();
+		this.numero = resultadoCaixa.getNumero();
+		this.data = resultadoCaixa.getData();
+		this.sorteio = resultadoCaixa.getSorteio();
+		this.ganhadores = resultadoCaixa.getGanhadores();
+		this.rateio = resultadoCaixa.getRateio();
+		this.acumulado = resultadoCaixa.getAcumulado();
+		this.valorAcumulado = resultadoCaixa.getValorAcumulado();
+		this.valorAcumulado = resultadoCaixa.getValorAcumulado();
+		this.cidades = resultadoCaixa.getCidades();
+		this.proximoEstimativa = resultadoCaixa.getProximoEstimativa();
+		this.proximoData = resultadoCaixa.getProximoData();
 	}
 
 	public String getId() {
@@ -119,7 +112,7 @@ public class ResultadoCaixa implements Serializable {
 	public void setValorAcumulado(Double valorAcumulado) {
 		this.valorAcumulado = valorAcumulado;
 	}
-	
+
 	public List<ArrayList<String>> getCidades() {
 		return cidades;
 	}
@@ -160,7 +153,7 @@ public class ResultadoCaixa implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ResultadoCaixa other = (ResultadoCaixa) obj;
+		ResultadoCaixaDTO other = (ResultadoCaixaDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -171,9 +164,9 @@ public class ResultadoCaixa implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Resultado [id=" + id + ", numero=" + numero + ", data=" + data + ", sorteio=" + sorteio
+		return "ResultadoCaixaDTO [id=" + id + ", numero=" + numero + ", data=" + data + ", sorteio=" + sorteio
 				+ ", ganhadores=" + ganhadores + ", rateio=" + rateio + ", acumulado=" + acumulado + ", valorAcumulado="
 				+ valorAcumulado + ", cidades=" + cidades + ", proximoEstimativa=" + proximoEstimativa
 				+ ", proximoData=" + proximoData + "]";
-	}	
+	}
 }

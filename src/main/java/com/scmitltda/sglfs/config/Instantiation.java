@@ -10,15 +10,20 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import com.scmitltda.sglfs.domain.Aposta;
+import com.scmitltda.sglfs.domain.Resultado;
 import com.scmitltda.sglfs.repository.ApostaRepository;
+import com.scmitltda.sglfs.repository.ResultadoRepository;
 
 //import com.scmitltda.sglfs.repository.ResultadoRepository;
 
 @Configuration
 public class Instantiation implements CommandLineRunner {
 	
+	@Autowired
+	private ResultadoRepository resultadoRepository;
+	
 	//@Autowired
-	//private ResultadoRepository resultadoRepository;
+	//private ResultadoCaixaRepository resultadoCaixaRepository;
 	
 	@Autowired
 	private ApostaRepository apostaRepository;
@@ -26,7 +31,7 @@ public class Instantiation implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		/*
+		// preparar classe Resultado
 		resultadoRepository.deleteAll();
 		
 		List<Integer> sorteio = new ArrayList<Integer>();
@@ -45,8 +50,11 @@ public class Instantiation implements CommandLineRunner {
 		Resultado r2 = new Resultado(null, "2", "12-04-2019", sorteio, rateio);
 		
 		resultadoRepository.saveAll(Arrays.asList(r1, r2));
-	*/
 		
+		// Preparar classe ResultadoCaixa
+		//resultadoCaixaRepository.deleteAll();
+		
+		// Preparar classe Aposta
 		apostaRepository.deleteAll();
 		
 		List<Integer> dezenaApostada;

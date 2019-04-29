@@ -1,9 +1,7 @@
 package com.scmitltda.sglfs.resourses;
 
 import java.net.URI;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +14,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.scmitltda.sglfs.domain.Resultado;
-import com.scmitltda.sglfs.domain.ResultadoCaixa;
 import com.scmitltda.sglfs.dto.ResultadoDTO;
 import com.scmitltda.sglfs.services.ResultadoService;
-import com.scmitltda.sglfs.services.exception.ObjectFoundException;
 
 @RestController
 @RequestMapping(value="/resultados")
@@ -87,78 +82,6 @@ public class ResultadoResource {
 		resultado.setId(id);
 		
 		resultado = resultadoService.update(resultado);
-		
-		return ResponseEntity.noContent().build();
-	}
-	
-	@GetMapping(value = "/load")
-	public ResponseEntity<Void> loadAll() {
-		resultadoService.deleteAll();
-		
-		RestTemplate restTemplate = new RestTemplate();
-		
-		String loteria = "lotofacil";
-		
-		String uriUltimo = "https://www.lotodicas.com.br/api/{loteria}";
-		
-		 Map<String, String> params = new HashMap<String, String>();
-		 params.put("loteria", loteria);
-		
-		ResultadoCaixa resultadoCaixa =  restTemplate.getForObject(uriUltimo, ResultadoCaixa.class, params);
-		
-		Integer numero = Integer.parseInt(resultadoCaixa.getNumero());
-		
-		String uriByNumero = "https://www.lotodicas.com.br/api/{loteria}/{numero}";
-		
-		for (Integer i = numero; i > 0; i--) {
-			params.clear();
-			params.put("loteria", loteria);
-			params.put("numero", i.toString());
-			
-			resultadoCaixa =  restTemplate.getForObject(uriByNumero, ResultadoCaixa.class, params);
-			
-			Resultado resultado = new Resultado();
-			
-			resultado.setNumero(resultadoCaixa.getNumero());
-			resultado.setData(resultadoCaixa.getData());
-			resultado.setSorteio(resultadoCaixa.getSorteio());
-			resultado.setRateio(resultadoCaixa.getRateio());
-			
-			resultadoService.insert(resultado);
-		}
-		
-		return ResponseEntity.noContent().build();
-	}
-	
-	@GetMapping(value = "/load/{numero}")
-	public ResponseEntity<Void> loadByNumber(@PathVariable String numero) {	
-		
-		Resultado resultado = resultadoService.findByNumero(numero);
-		
-		if (resultado != null) {
-			throw new ObjectFoundException("Numero [" + numero + "] já existe na base de dados.");
-		}
-		
-		RestTemplate restTemplate = new RestTemplate();
-		
-		String loteria = "lotofacil";
-		
-		String uriByNumero = "https://www.lotodicas.com.br/api/{loteria}/{numero}";
-		
-		 Map<String, String> params = new HashMap<String, String>();
-		 params.put("loteria", loteria);
-		 params.put("numero", numero);
-		
-		ResultadoCaixa resultadoCaixa =  restTemplate.getForObject(uriByNumero, ResultadoCaixa.class, params);
-		
-		resultado = new Resultado();
-			
-		resultado.setNumero(resultadoCaixa.getNumero());
-		resultado.setData(resultadoCaixa.getData());
-		resultado.setSorteio(resultadoCaixa.getSorteio());
-		resultado.setRateio(resultadoCaixa.getRateio());
-			
-		resultadoService.insert(resultado);
 		
 		return ResponseEntity.noContent().build();
 	}
