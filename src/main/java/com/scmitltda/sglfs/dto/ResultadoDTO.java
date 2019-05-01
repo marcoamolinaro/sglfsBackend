@@ -67,11 +67,4 @@ public class ResultadoDTO implements Serializable {
 	public void setRateio(List<Double> rateio) {
 		this.rateio = rateio;
 	}
-
-	@Override
-	public String toString() {
-		return "ResultadoDTO [id=" + id + ", numero=" + numero + ", data=" + data + ", sorteio=" + sorteio + rateio + "]";
-	}
-	
-	
 }
