@@ -35,8 +35,7 @@ public class ApostaService {
 				apostaDTO.getId(), 
 				apostaDTO.getNumero(), 
 				apostaDTO.getData(), 
-				apostaDTO.getDezenasApostadas(),
-				apostaDTO.getValor());
+				apostaDTO.getDezenasApostadas());
 	}
 
 	public Aposta update(Aposta aposta) {
@@ -49,7 +48,6 @@ public class ApostaService {
 		newAposta.setNumero(aposta.getNumero());
 		newAposta.setData(aposta.getData());
 		newAposta.setDezenasApostadas(aposta.getDezenasApostadas());
-		newAposta.setValor(aposta.getValor());
 	}
 	
 	public void delete(String id) {

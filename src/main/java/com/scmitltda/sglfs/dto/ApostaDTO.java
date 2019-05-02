@@ -16,7 +16,6 @@ public class ApostaDTO implements Serializable {
 	private String numero;
 	private String data;
 	private List<List<Integer>> dezenasApostadas;
-	private Double valor;
 	
 	public ApostaDTO() {}
 	
@@ -29,7 +28,6 @@ public class ApostaDTO implements Serializable {
 		this.numero = aposta.getNumero();
 		this.data = aposta.getData();
 		this.dezenasApostadas = aposta.getDezenasApostadas();
-		this.valor = aposta.getValor();
 	}
 
 	public String getNumero() {
@@ -58,13 +56,5 @@ public class ApostaDTO implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public Double getValor() {
-		return valor;
-	}
-
-	public void setValor(Double valor) {
-		this.valor = valor;
 	}
 }
