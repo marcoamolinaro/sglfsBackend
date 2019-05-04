@@ -2,6 +2,7 @@ package com.scmitltda.sglfs.domain;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,8 +19,7 @@ public class Aposta implements Serializable {
 	private String id;
 	private String numero;
 	private String data;
-	private List<List<Integer>> dezenasApostadas;
-	private Double valor;
+	private Map<String,Double> dezenasApostadas;
 	
 	public Aposta() {}
 	
@@ -27,14 +27,12 @@ public class Aposta implements Serializable {
 			String id, 
 			String numero, 
 			String data,
-			List<List<Integer>> dezenasApostadas,
-			Double valor) {
+			Map<String,Double> dezenasApostadas) {
 		super();
 		this.id = id;
 		this.numero = numero;
 		this.data = data;
 		this.dezenasApostadas = dezenasApostadas;
-		this.valor = valor;
 	}
 
 	public String getId() {
@@ -61,22 +59,14 @@ public class Aposta implements Serializable {
 		this.data =  data;
 	}
 
-	public List<List<Integer>> getDezenasApostadas() {
+	public Map<String,Double> getDezenasApostadas() {
 		return dezenasApostadas;
 	}
 
-	public void setDezenasApostadas(List<List<Integer>> dezenasApostadas) {
+	public void setDezenasApostadas(Map<String,Double> dezenasApostadas) {
 		this.dezenasApostadas = dezenasApostadas;
 	}
 	
-	public Double getValor() {
-		return valor;
-	}
-
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -104,6 +94,6 @@ public class Aposta implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Aposta [id=" + id + ", numero=" + numero + ", data=" + data + ", dezenasApostadas=" + dezenasApostadas + "valor=" + valor +"]";
+		return "Aposta [id=" + id + ", numero=" + numero + ", data=" + data + ", dezenasApostadas=" + dezenasApostadas +"]";
 	}
 }

@@ -2,7 +2,9 @@ package com.scmitltda.sglfs.config;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -57,21 +59,17 @@ public class Instantiation implements CommandLineRunner {
 		// Preparar classe Aposta
 		apostaRepository.deleteAll();
 		
-		List<Integer> dezenaApostada;
-		List<List<Integer>> dezenasApostadas = new ArrayList<List<Integer>>();
+		Map<String,Double> dezenasApostadas = new HashMap<String,Double>();
 		
-		for (int k = 0; k <= 3; k++) {
-			dezenaApostada = new ArrayList<Integer>();
-			for (Integer i = 1; i <= 15; i++) {
-				dezenaApostada.add(i+k);
-			}
-			dezenasApostadas.add(dezenaApostada);
-		}	
+		dezenasApostadas.put("1,2,3,4,5,6,7,8,9,10,11,12,13,14,15", 2.0);
+		dezenasApostadas.put("2,3,4,5,6,7,8,9,10,11,12,13,14,15", 2.0);
+		dezenasApostadas.put("1,2,3,4,5,6,7,8,9,10,11,14,16,18,20", 2.0);
+		
 		
 		Aposta a1 = new Aposta(null, "1", "10-04-2019", dezenasApostadas);
-		Aposta a2 = new Aposta(null, "2", "12-04-2019", dezenasApostadas);
-		Aposta a3 = new Aposta(null, "3", "14-04-2019", dezenasApostadas);
+		//Aposta a2 = new Aposta(null, "2", "12-04-2019", dezenasApostadas);
+		//Aposta a3 = new Aposta(null, "3", "14-04-2019", dezenasApostadas);
 		
-		apostaRepository.saveAll(Arrays.asList(a1, a2, a3));
+		apostaRepository.saveAll(Arrays.asList(a1));
 	}
 }

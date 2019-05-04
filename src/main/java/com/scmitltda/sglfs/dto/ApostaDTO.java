@@ -2,6 +2,7 @@ package com.scmitltda.sglfs.dto;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import com.scmitltda.sglfs.domain.Aposta;
 
@@ -15,8 +16,7 @@ public class ApostaDTO implements Serializable {
 	private String id;
 	private String numero;
 	private String data;
-	private List<List<Integer>> dezenasApostadas;
-	private Double valor;
+	private Map<String,Double> dezenasApostadas;
 	
 	public ApostaDTO() {}
 	
@@ -29,7 +29,6 @@ public class ApostaDTO implements Serializable {
 		this.numero = aposta.getNumero();
 		this.data = aposta.getData();
 		this.dezenasApostadas = aposta.getDezenasApostadas();
-		this.valor = aposta.getValor();
 	}
 
 	public String getNumero() {
@@ -48,23 +47,15 @@ public class ApostaDTO implements Serializable {
 		this.data = data;
 	}
 
-	public List<List<Integer>> getDezenasApostadas() {
+	public Map<String,Double> getDezenasApostadas() {
 		return dezenasApostadas;
 	}
 
-	public void setDezenasApostadas(List<List<Integer>> dezenasApostadas) {
+	public void setDezenasApostadas(Map<String,Double> dezenasApostadas) {
 		this.dezenasApostadas = dezenasApostadas;
 	}
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public Double getValor() {
-		return valor;
-	}
-
-	public void setValor(Double valor) {
-		this.valor = valor;
 	}
 }
