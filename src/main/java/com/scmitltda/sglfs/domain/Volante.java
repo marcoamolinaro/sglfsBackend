@@ -6,8 +6,8 @@ import java.util.Map;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "aposta")
-public class Aposta implements Serializable {
+@Document(collection = "volante")
+public class Volante implements Serializable {
 	
 	/**
 	 * 
@@ -20,9 +20,9 @@ public class Aposta implements Serializable {
 	private String data;
 	private Map<String,Double> dezenasApostadas;
 	
-	public Aposta() {}
+	public Volante() {}
 	
-	public Aposta(
+	public Volante(
 			String id, 
 			String numero, 
 			String data,
@@ -82,7 +82,7 @@ public class Aposta implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Aposta other = (Aposta) obj;
+		Volante other = (Volante) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

@@ -3,9 +3,9 @@ package com.scmitltda.sglfs.dto;
 import java.io.Serializable;
 import java.util.Map;
 
-import com.scmitltda.sglfs.domain.Aposta;
+import com.scmitltda.sglfs.domain.Volante;
 
-public class ApostaDTO implements Serializable {
+public class VolanteDTO implements Serializable {
 
 	/**
 	 * 
@@ -17,17 +17,17 @@ public class ApostaDTO implements Serializable {
 	private String data;
 	private Map<String,Double> dezenasApostadas;
 	
-	public ApostaDTO() {}
+	public VolanteDTO() {}
 	
 	public String getId() {
 		return id;
 	}
 
-	public ApostaDTO(Aposta aposta) {
-		this.id = aposta.getId();
-		this.numero = aposta.getNumero();
-		this.data = aposta.getData();
-		this.dezenasApostadas = aposta.getDezenasApostadas();
+	public VolanteDTO(Volante volante) {
+		this.id = volante.getId();
+		this.numero = volante.getNumero();
+		this.data = volante.getData();
+		this.dezenasApostadas = volante.getDezenasApostadas();
 	}
 
 	public String getNumero() {

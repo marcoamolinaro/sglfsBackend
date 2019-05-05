@@ -6,10 +6,10 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.scmitltda.sglfs.domain.Aposta;
+import com.scmitltda.sglfs.domain.Volante;
 
 @Repository
-public interface ApostaRepository extends MongoRepository<Aposta, String>{
+public interface VolanteRepository extends MongoRepository<Volante, String>{
 	@Transactional(readOnly = true)
-	public List<Aposta> findByNumero(String numero);
+	public List<Volante> findByNumero(String numero);
 }

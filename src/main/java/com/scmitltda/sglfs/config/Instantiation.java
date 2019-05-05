@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.scmitltda.sglfs.domain.Aposta;
+import com.scmitltda.sglfs.domain.Volante;
 import com.scmitltda.sglfs.domain.Resultado;
-import com.scmitltda.sglfs.repository.ApostaRepository;
+import com.scmitltda.sglfs.repository.VolanteRepository;
 import com.scmitltda.sglfs.repository.ResultadoRepository;
 
 //import com.scmitltda.sglfs.repository.ResultadoRepository;
@@ -28,7 +28,7 @@ public class Instantiation implements CommandLineRunner {
 	//private ResultadoCaixaRepository resultadoCaixaRepository;
 	
 	@Autowired
-	private ApostaRepository apostaRepository;
+	private VolanteRepository volanteRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -57,7 +57,7 @@ public class Instantiation implements CommandLineRunner {
 		//resultadoCaixaRepository.deleteAll();
 		
 		// Preparar classe Aposta
-		apostaRepository.deleteAll();
+		volanteRepository.deleteAll();
 		
 		Map<String,Double> dezenasApostadas = new HashMap<String,Double>();
 		
@@ -66,10 +66,10 @@ public class Instantiation implements CommandLineRunner {
 		dezenasApostadas.put("1,2,3,4,5,6,7,8,9,10,11,14,16,18,20", 2.0);
 		
 		
-		Aposta a1 = new Aposta(null, "1", "10-04-2019", dezenasApostadas);
+		Volante v1 = new Volante(null, "1", "10-04-2019", dezenasApostadas);
 		//Aposta a2 = new Aposta(null, "2", "12-04-2019", dezenasApostadas);
 		//Aposta a3 = new Aposta(null, "3", "14-04-2019", dezenasApostadas);
 		
-		apostaRepository.saveAll(Arrays.asList(a1));
+		volanteRepository.saveAll(Arrays.asList(v1));
 	}
 }

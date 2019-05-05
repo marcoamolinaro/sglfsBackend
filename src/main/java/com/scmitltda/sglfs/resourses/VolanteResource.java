@@ -16,42 +16,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.scmitltda.sglfs.domain.Aposta;
-import com.scmitltda.sglfs.dto.ApostaDTO;
-import com.scmitltda.sglfs.services.ApostaService;
+import com.scmitltda.sglfs.domain.Volante;
+import com.scmitltda.sglfs.dto.VolanteDTO;
+import com.scmitltda.sglfs.services.VolanteService;
 
 @RestController
-@RequestMapping(value="/apostas")
-public class ApostaResource {
+@RequestMapping(value="/volantes")
+public class VolanteResource {
 	
 	@Autowired
-	private ApostaService apostaService;
+	private VolanteService volanteService;
 	
 	@GetMapping
-	public ResponseEntity<List<ApostaDTO>> findAll() {
+	public ResponseEntity<List<VolanteDTO>> findAll() {
 		
-		List<Aposta> apostas = apostaService.findAll();
+		List<Volante> apostas = volanteService.findAll();
 		
-		List<ApostaDTO> apostasDto = 
-				apostas.stream().map(r -> new ApostaDTO(r)).collect(Collectors.toList());
+		List<VolanteDTO> apostasDto = 
+				apostas.stream().map(r -> new VolanteDTO(r)).collect(Collectors.toList());
 		
 		return ResponseEntity.ok().body(apostasDto);
 	}
 	
 	@GetMapping(value = "/id/{id}")
-	public ResponseEntity<ApostaDTO> findById(@PathVariable String id) {
+	public ResponseEntity<VolanteDTO> findById(@PathVariable String id) {
 		
-		Aposta aposta = apostaService.findById(id);
+		Volante aposta = volanteService.findById(id);
 		
-		return ResponseEntity.ok().body(new ApostaDTO(aposta));
+		return ResponseEntity.ok().body(new VolanteDTO(aposta));
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> insert(@RequestBody ApostaDTO apostaDTO) {
+	public ResponseEntity<Void> insert(@RequestBody VolanteDTO apostaDTO) {
 		
-		Aposta aposta = apostaService.fromDTO(apostaDTO);
+		Volante aposta = volanteService.fromDTO(apostaDTO);
 		
-		aposta = apostaService.insert(aposta);
+		aposta = volanteService.insert(aposta);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(aposta.getId()).toUri();
 		
@@ -59,13 +59,13 @@ public class ApostaResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Void> update(@RequestBody ApostaDTO apostaDTO, @PathVariable String id) {
+	public ResponseEntity<Void> update(@RequestBody VolanteDTO apostaDTO, @PathVariable String id) {
 		
-		Aposta aposta = apostaService.fromDTO(apostaDTO);
+		Volante aposta = volanteService.fromDTO(apostaDTO);
 		
 		aposta.setId(id);
 		
-		aposta = apostaService.update(aposta);
+		aposta = volanteService.update(aposta);
 		
 		return ResponseEntity.noContent().build();
 	}
@@ -73,18 +73,18 @@ public class ApostaResource {
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable String id) {
 		
-		apostaService.delete(id);
+		volanteService.delete(id);
 		
 		return ResponseEntity.noContent().build();
 	}
 	
 	@GetMapping(value = "/{numero}")
-	public ResponseEntity<List<ApostaDTO>> findByNumero(@PathVariable String numero) {
+	public ResponseEntity<List<VolanteDTO>> findByNumero(@PathVariable String numero) {
 		
-		List<Aposta> apostas = apostaService.findByNumero(numero);
+		List<Volante> apostas = volanteService.findByNumero(numero);
 		
-		List<ApostaDTO> apostasDto = 
-				apostas.stream().map(r -> new ApostaDTO(r)).collect(Collectors.toList());
+		List<VolanteDTO> apostasDto = 
+				apostas.stream().map(r -> new VolanteDTO(r)).collect(Collectors.toList());
 		
 		return ResponseEntity.ok().body(apostasDto);
 	}
