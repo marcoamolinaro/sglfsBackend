@@ -23,7 +23,7 @@ public class VolanteService {
 	
 	public Volante findById(String id) {
 		Optional<Volante> obj = volanteRepository.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException("Aposta não encontrado"));
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Volante não encontrado"));
 	}
 	
 	public Volante insert(Volante aposta) {
@@ -35,7 +35,7 @@ public class VolanteService {
 				apostaDTO.getId(), 
 				apostaDTO.getNumero(), 
 				apostaDTO.getData(), 
-				apostaDTO.getDezenasApostadas());
+				apostaDTO.getApostas());
 	}
 
 	public Volante update(Volante aposta) {
@@ -47,7 +47,7 @@ public class VolanteService {
 	private void updateData(Volante newAposta, Volante aposta) {
 		newAposta.setNumero(aposta.getNumero());
 		newAposta.setData(aposta.getData());
-		newAposta.setDezenasApostadas(aposta.getDezenasApostadas());
+		newAposta.setApostas(aposta.getApostas());
 	}
 	
 	public void delete(String id) {

@@ -2,19 +2,18 @@ package com.scmitltda.sglfs.config;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.scmitltda.sglfs.domain.Volante;
+import com.scmitltda.sglfs.domain.Aposta;
 import com.scmitltda.sglfs.domain.Resultado;
-import com.scmitltda.sglfs.repository.VolanteRepository;
+import com.scmitltda.sglfs.domain.Volante;
 import com.scmitltda.sglfs.repository.ResultadoRepository;
+import com.scmitltda.sglfs.repository.VolanteRepository;
 
 //import com.scmitltda.sglfs.repository.ResultadoRepository;
 
@@ -59,16 +58,21 @@ public class Instantiation implements CommandLineRunner {
 		// Preparar classe Aposta
 		volanteRepository.deleteAll();
 		
-		Map<String,Double> dezenasApostadas = new HashMap<String,Double>();
+		List<Aposta> apostas = new ArrayList<Aposta>();
 		
-		dezenasApostadas.put("1,2,3,4,5,6,7,8,9,10,11,12,13,14,15", 2.0);
-		dezenasApostadas.put("2,3,4,5,6,7,8,9,10,11,12,13,14,15", 2.0);
-		dezenasApostadas.put("1,2,3,4,5,6,7,8,9,10,11,14,16,18,20", 2.0);
+		int j = 0;
+		
+		for (int i=0; i<=4; i++) {
+			List<Integer> dezenas = new ArrayList<Integer>();
+			for (int k=j; k<=15; k++) {
+				dezenas.add(k);
+			}
+			Aposta aposta = new Aposta(dezenas, 32.0);
+			apostas.add(aposta);
+		}
 		
 		
-		Volante v1 = new Volante(null, "1", "10-04-2019", dezenasApostadas);
-		//Aposta a2 = new Aposta(null, "2", "12-04-2019", dezenasApostadas);
-		//Aposta a3 = new Aposta(null, "3", "14-04-2019", dezenasApostadas);
+		Volante v1 = new Volante(null, "1", "10-04-2019", apostas);
 		
 		volanteRepository.saveAll(Arrays.asList(v1));
 	}

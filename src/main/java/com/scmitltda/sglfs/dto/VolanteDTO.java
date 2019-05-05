@@ -1,8 +1,9 @@
 package com.scmitltda.sglfs.dto;
 
 import java.io.Serializable;
-import java.util.Map;
+import java.util.List;
 
+import com.scmitltda.sglfs.domain.Aposta;
 import com.scmitltda.sglfs.domain.Volante;
 
 public class VolanteDTO implements Serializable {
@@ -15,7 +16,7 @@ public class VolanteDTO implements Serializable {
 	private String id;
 	private String numero;
 	private String data;
-	private Map<String,Double> dezenasApostadas;
+	private List<Aposta> apostas;
 	
 	public VolanteDTO() {}
 	
@@ -27,7 +28,7 @@ public class VolanteDTO implements Serializable {
 		this.id = volante.getId();
 		this.numero = volante.getNumero();
 		this.data = volante.getData();
-		this.dezenasApostadas = volante.getDezenasApostadas();
+		this.apostas = volante.getApostas();
 	}
 
 	public String getNumero() {
@@ -46,12 +47,12 @@ public class VolanteDTO implements Serializable {
 		this.data = data;
 	}
 
-	public Map<String,Double> getDezenasApostadas() {
-		return dezenasApostadas;
+	public List<Aposta> getApostas() {
+		return apostas;
 	}
 
-	public void setDezenasApostadas(Map<String,Double> dezenasApostadas) {
-		this.dezenasApostadas = dezenasApostadas;
+	public void setApostas(List<Aposta> apostas) {
+		this.apostas = apostas;
 	}
 
 	public void setId(String id) {

@@ -1,7 +1,7 @@
 package com.scmitltda.sglfs.domain;
 
 import java.io.Serializable;
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,7 +18,7 @@ public class Volante implements Serializable {
 	private String id;
 	private String numero;
 	private String data;
-	private Map<String,Double> dezenasApostadas;
+	private List<Aposta> apostas;
 	
 	public Volante() {}
 	
@@ -26,12 +26,12 @@ public class Volante implements Serializable {
 			String id, 
 			String numero, 
 			String data,
-			Map<String,Double> dezenasApostadas) {
+			List<Aposta> apostas) {
 		super();
 		this.id = id;
 		this.numero = numero;
 		this.data = data;
-		this.dezenasApostadas = dezenasApostadas;
+		this.apostas = apostas;
 	}
 
 	public String getId() {
@@ -58,12 +58,12 @@ public class Volante implements Serializable {
 		this.data =  data;
 	}
 
-	public Map<String,Double> getDezenasApostadas() {
-		return dezenasApostadas;
+	public List<Aposta> getApostas() {
+		return apostas;
 	}
 
-	public void setDezenasApostadas(Map<String,Double> dezenasApostadas) {
-		this.dezenasApostadas = dezenasApostadas;
+	public void setApostas(List<Aposta> apostas) {
+		this.apostas = apostas;
 	}
 	
 	@Override
@@ -93,6 +93,6 @@ public class Volante implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Aposta [id=" + id + ", numero=" + numero + ", data=" + data + ", dezenasApostadas=" + dezenasApostadas +"]";
+		return "Aposta [id=" + id + ", numero=" + numero + ", data=" + data + ", apostas=" + apostas +"]";
 	}
 }
