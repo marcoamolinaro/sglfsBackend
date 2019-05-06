@@ -1,9 +1,11 @@
-package com.scmitltda.sglfs.domain;
+package com.scmitltda.sglfs.dto;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class Aposta implements Serializable {
+import com.scmitltda.sglfs.domain.Aposta;
+
+public class ApostaDTO implements Serializable {
 
 	/**
 	 * 
@@ -13,12 +15,11 @@ public class Aposta implements Serializable {
 	private List<Integer> dezenas;
 	private Double valor;
 	
-	public Aposta() {}
-
-	public Aposta(List<Integer> dezenas, Double valor) {
-		super();
-		this.dezenas = dezenas;
-		this.valor = valor;
+	public ApostaDTO() {}
+	
+	public ApostaDTO(Aposta aposta) {
+		this.dezenas = aposta.getDezenas();
+		this.valor = aposta.getValor();
 	}
 
 	public List<Integer> getDezenas() {
@@ -35,10 +36,5 @@ public class Aposta implements Serializable {
 
 	public void setValor(Double valor) {
 		this.valor = valor;
-	}
-
-	@Override
-	public String toString() {
-		return "Aposta [dezenas=" + dezenas + ", valor=" + valor + "]";
 	}
 }
