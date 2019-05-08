@@ -61,20 +61,6 @@ public class ResultadoCaixaService {
 		newResultadoCaixa.setProximoData(resultadoCaixa.getProximoData());
 	}
 
-	/*
-	 * 	private String id;
-		private String numero;
-		private String data;
-		private List<Integer> sorteio;
-		private List<Integer> ganhadores;
-		private List<Double> rateio;
-		private String acumulado;
-		private Double valorAcumulado;
-		List<ArrayList<String>> cidades;
-		private Double proximoEstimativa;
-		private String proximoData
-	 */
-
 	public ResultadoCaixa fromDTO(ResultadoCaixaDTO resultadoCaixaDTO) {
 		return new ResultadoCaixa(
 				resultadoCaixaDTO.getId(), 
