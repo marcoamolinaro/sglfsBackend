@@ -55,10 +55,10 @@ public class ResultadoCaixaService {
 		newResultadoCaixa.setGanhadores(resultadoCaixa.getGanhadores());
 		newResultadoCaixa.setRateio(resultadoCaixa.getRateio());
 		newResultadoCaixa.setAcumulado(resultadoCaixa.getAcumulado());
-		newResultadoCaixa.setValorAcumulado(resultadoCaixa.getValorAcumulado());
+		newResultadoCaixa.setValor_acumulado(resultadoCaixa.getValor_acumulado());
 		newResultadoCaixa.setCidades(resultadoCaixa.getCidades());
-		newResultadoCaixa.setProximoEstimativa(resultadoCaixa.getProximoEstimativa());
-		newResultadoCaixa.setProximoData(resultadoCaixa.getProximoData());
+		newResultadoCaixa.setProximo_estimativa(resultadoCaixa.getProximo_estimativa());
+		newResultadoCaixa.setProximo_data(resultadoCaixa.getProximo_data());
 	}
 
 	public ResultadoCaixa fromDTO(ResultadoCaixaDTO resultadoCaixaDTO) {
@@ -70,9 +70,9 @@ public class ResultadoCaixaService {
 				resultadoCaixaDTO.getGanhadores(),
 				resultadoCaixaDTO.getRateio(),
 				resultadoCaixaDTO.getAcumulado(),
-				resultadoCaixaDTO.getValorAcumulado(),
+				resultadoCaixaDTO.getValor_acumulado(),
 				resultadoCaixaDTO.getCidades(),
-				resultadoCaixaDTO.getProximoEstimativa(),
-				resultadoCaixaDTO.getProximoData());
+				resultadoCaixaDTO.getProximo_estimativa(),
+				resultadoCaixaDTO.getProximo_data());
 	}
 }

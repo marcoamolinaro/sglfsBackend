@@ -23,10 +23,10 @@ public class ResultadoCaixa implements Serializable {
 	private List<Integer> ganhadores;
 	private List<Double> rateio;
 	private String acumulado;
-	private Double valorAcumulado;
+	private Double valor_acumulado;
 	List<ArrayList<String>> cidades;
-	private Double proximoEstimativa;
-	private String proximoData;
+	private Double proximo_estimativa;
+	private String proximo_data;
 	
 	public ResultadoCaixa() {}
 	
@@ -38,10 +38,10 @@ public class ResultadoCaixa implements Serializable {
 			List<Integer> ganhadores,
 			List<Double> rateio,
 			String acumulado, 
-			Double valorAcumulado,
+			Double valor_acumulado,
 			List<ArrayList<String>> cidades,
-			Double proximoEstimativa,
-			String proximoData) {
+			Double proximo_estimativa,
+			String proximo_data) {
 		super();
 		this.id = id;
 		this.numero = numero;
@@ -50,10 +50,10 @@ public class ResultadoCaixa implements Serializable {
 		this.ganhadores = ganhadores;
 		this.rateio = rateio;
 		this.acumulado = acumulado;
-		this.valorAcumulado = valorAcumulado;
+		this.valor_acumulado = valor_acumulado;
 		this.cidades = cidades;
-		this.proximoEstimativa = proximoEstimativa;
-		this.proximoData = proximoData;
+		this.proximo_estimativa = proximo_estimativa;
+		this.proximo_data = proximo_data;
 	}
 
 	public String getId() {
@@ -112,12 +112,12 @@ public class ResultadoCaixa implements Serializable {
 		this.acumulado = acumulado;
 	}
 
-	public Double getValorAcumulado() {
-		return valorAcumulado;
+	public Double getValor_acumulado() {
+		return valor_acumulado;
 	}
 
-	public void setValorAcumulado(Double valorAcumulado) {
-		this.valorAcumulado = valorAcumulado;
+	public void setValor_acumulado(Double valor_acumulado) {
+		this.valor_acumulado = valor_acumulado;
 	}
 	
 	public List<ArrayList<String>> getCidades() {
@@ -128,20 +128,20 @@ public class ResultadoCaixa implements Serializable {
 		this.cidades = cidades;
 	}
 
-	public Double getProximoEstimativa() {
-		return proximoEstimativa;
+	public Double getProximo_estimativa() {
+		return proximo_estimativa;
 	}
 
-	public void setProximoEstimativa(Double proximoEstimativa) {
-		this.proximoEstimativa = proximoEstimativa;
+	public void setProximo_estimativa(Double proximo_estimativa) {
+		this.proximo_estimativa = proximo_estimativa;
 	}
 
-	public String getProximoData() {
-		return proximoData;
+	public String getProximo_data() {
+		return proximo_data;
 	}
 
-	public void setProximoData(String proximoData) {
-		this.proximoData = proximoData;
+	public void setProximo_data(String proximo_data) {
+		this.proximo_data = proximo_data;
 	}
 
 	@Override
@@ -171,9 +171,9 @@ public class ResultadoCaixa implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Resultado [id=" + id + ", numero=" + numero + ", data=" + data + ", sorteio=" + sorteio
-				+ ", ganhadores=" + ganhadores + ", rateio=" + rateio + ", acumulado=" + acumulado + ", valorAcumulado="
-				+ valorAcumulado + ", cidades=" + cidades + ", proximoEstimativa=" + proximoEstimativa
-				+ ", proximoData=" + proximoData + "]";
-	}	
+		return "ResultadoCaixa [id=" + id + ", numero=" + numero + ", data=" + data + ", sorteio=" + sorteio
+				+ ", ganhadores=" + ganhadores + ", rateio=" + rateio + ", acumulado=" + acumulado
+				+ ", valor_acumulado=" + valor_acumulado + ", cidades=" + cidades + ", proximo_estimativa="
+				+ proximo_estimativa + ", proximo_data=" + proximo_data + "]";
+	}
 }

@@ -27,10 +27,10 @@ public class ResultadoCaixaDTO implements Serializable{
 	private List<Integer> ganhadores;
 	private List<Double> rateio;
 	private String acumulado;
-	private Double valorAcumulado;
+	private Double valor_acumulado;
 	List<ArrayList<String>> cidades;
-	private Double proximoEstimativa;
-	private String proximoData;
+	private Double proximo_estimativa;
+	private String proximo_data;
 
 	public ResultadoCaixaDTO() {}
 	
@@ -42,11 +42,10 @@ public class ResultadoCaixaDTO implements Serializable{
 		this.ganhadores = resultadoCaixa.getGanhadores();
 		this.rateio = resultadoCaixa.getRateio();
 		this.acumulado = resultadoCaixa.getAcumulado();
-		this.valorAcumulado = resultadoCaixa.getValorAcumulado();
-		this.valorAcumulado = resultadoCaixa.getValorAcumulado();
+		this.valor_acumulado = resultadoCaixa.getValor_acumulado();
 		this.cidades = resultadoCaixa.getCidades();
-		this.proximoEstimativa = resultadoCaixa.getProximoEstimativa();
-		this.proximoData = resultadoCaixa.getProximoData();
+		this.proximo_estimativa = resultadoCaixa.getProximo_estimativa();
+		this.proximo_data = resultadoCaixa.getProximo_data();
 	}
 
 	public String getId() {
@@ -105,12 +104,12 @@ public class ResultadoCaixaDTO implements Serializable{
 		this.acumulado = acumulado;
 	}
 
-	public Double getValorAcumulado() {
-		return valorAcumulado;
+	public Double getValor_acumulado() {
+		return valor_acumulado;
 	}
 
-	public void setValorAcumulado(Double valorAcumulado) {
-		this.valorAcumulado = valorAcumulado;
+	public void setValorAcumulado(Double valor_acumulado) {
+		this.valor_acumulado = valor_acumulado;
 	}
 
 	public List<ArrayList<String>> getCidades() {
@@ -121,19 +120,19 @@ public class ResultadoCaixaDTO implements Serializable{
 		this.cidades = cidades;
 	}
 
-	public Double getProximoEstimativa() {
-		return proximoEstimativa;
+	public Double getProximo_estimativa() {
+		return proximo_estimativa;
 	}
 
-	public void setProximoEstimativa(Double proximoEstimativa) {
-		this.proximoEstimativa = proximoEstimativa;
+	public void setProximoEstimativa(Double proximo_estimativa) {
+		this.proximo_estimativa = proximo_estimativa;
 	}
 
-	public String getProximoData() {
-		return proximoData;
+	public String getProximo_data() {
+		return proximo_data;
 	}
 
-	public void setProximoData(String proximoData) {
-		this.proximoData = proximoData;
+	public void setProximo_data(String proximo_data) {
+		this.proximo_data = proximo_data;
 	}
 }
