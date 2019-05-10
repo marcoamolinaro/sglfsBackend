@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.scmitltda.sglfs.services.exception.InvalidArgumentNumberException;
 import com.scmitltda.sglfs.services.exception.ObjectFoundException;
 import com.scmitltda.sglfs.services.exception.ObjectNotFoundException;
 
@@ -32,6 +33,18 @@ public class ResourceExceptionHandler {
 		
 		StandardError err = 
 				new StandardError(System.currentTimeMillis(), status.value(), "Já existe no banco de dados", e.getMessage(), request.getRequestURI());
+		
+		return ResponseEntity.status(status).body(err);
+		
+	}
+	
+	@ExceptionHandler(InvalidArgumentNumberException.class)
+	public ResponseEntity<StandardError> invalidArgument(InvalidArgumentNumberException e, HttpServletRequest request) {
+		
+		HttpStatus status = HttpStatus.FOUND;
+		
+		StandardError err = 
+				new StandardError(System.currentTimeMillis(), status.value(), "Número de parâmetros invalidos.", e.getMessage(), request.getRequestURI());
 		
 		return ResponseEntity.status(status).body(err);
 		
