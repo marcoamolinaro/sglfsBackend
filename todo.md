@@ -1,7 +1,7 @@
 // TODO
 - Create a new service to verify the betting numbers
 
-- Create a new service to generate betting numbers
+- Create function to validate the betting numbers generated according with the criterias 
 
 - Create UI - Prototype
 	- start screen 
