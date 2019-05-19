@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.scmitltda.sglfs.domain.Resultado;
+import com.scmitltda.sglfs.domain.ResultadoCaixa;
 import com.scmitltda.sglfs.dto.ResultadoDTO;
+import com.scmitltda.sglfs.services.ResultadoCaixaService;
 import com.scmitltda.sglfs.services.ResultadoService;
 
 @RestController
@@ -26,6 +28,9 @@ public class ResultadoResource {
 	
 	@Autowired
 	private ResultadoService resultadoService;
+	
+	@Autowired
+	private ResultadoCaixaService resultadoCaixaService;
 	
 	@GetMapping
 	public ResponseEntity<List<ResultadoDTO>> findAll() {
@@ -85,4 +90,12 @@ public class ResultadoResource {
 		
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping(value = "/verify/{numero}")
+	public ResponseEntity<ResultadoDTO> verify(@PathVariable String numero) {
+		ResultadoCaixa resultadoCaixa = resultadoCaixaService.findByNumero(numero);
+		
+		return null;
+	}
+	
 }
