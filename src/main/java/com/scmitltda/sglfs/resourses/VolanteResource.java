@@ -128,6 +128,8 @@ public class VolanteResource {
 			dezenas_apostadas = Util.generateAposta(qtde_dezenas);
 			aposta.setDezenas(dezenas_apostadas);
 			aposta.setValor(valorAposta);
+			aposta.setQtdDezenasAcerto(0);
+			aposta.setValorGanho(0.00);
 			apostas.add(aposta);
 		}
 		

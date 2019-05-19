@@ -14,12 +14,16 @@ public class ApostaDTO implements Serializable {
 	
 	private List<Integer> dezenas;
 	private Double valor;
+	private Integer qtdDezenasAcerto;
+	private Double valorGanho;
 	
 	public ApostaDTO() {}
 	
 	public ApostaDTO(Aposta aposta) {
 		this.dezenas = aposta.getDezenas();
 		this.valor = aposta.getValor();
+		this.qtdDezenasAcerto = aposta.getQtdDezenasAcerto();
+		this.valorGanho = aposta.getValorGanho();
 	}
 
 	public List<Integer> getDezenas() {
@@ -36,5 +40,21 @@ public class ApostaDTO implements Serializable {
 
 	public void setValor(Double valor) {
 		this.valor = valor;
+	}
+
+	public Integer getQtdDezenasAcerto() {
+		return qtdDezenasAcerto;
+	}
+
+	public void setQtdDezenasAcerto(Integer qtdDezenasAcerto) {
+		this.qtdDezenasAcerto = qtdDezenasAcerto;
+	}
+
+	public Double getValorGanho() {
+		return valorGanho;
+	}
+
+	public void setValorGanho(Double valorGanho) {
+		this.valorGanho = valorGanho;
 	}
 }

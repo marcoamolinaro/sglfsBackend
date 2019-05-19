@@ -26,28 +26,28 @@ public class VolanteService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Volante não encontrado"));
 	}
 	
-	public Volante insert(Volante aposta) {
-		return volanteRepository.insert(aposta);
+	public Volante insert(Volante volante) {
+		return volanteRepository.insert(volante);
 	}
 	
-	public Volante fromDTO(VolanteDTO apostaDTO) {
+	public Volante fromDTO(VolanteDTO volanteDTO) {
 		return new Volante(
-				apostaDTO.getId(), 
-				apostaDTO.getNumero(), 
-				apostaDTO.getData(), 
-				apostaDTO.getApostas());
+				volanteDTO.getId(), 
+				volanteDTO.getNumero(), 
+				volanteDTO.getData(), 
+				volanteDTO.getApostas());
 	}
 
-	public Volante update(Volante aposta) {
-		Volante newAposta = this.findById(aposta.getId());
-		updateData(newAposta, aposta);
+	public Volante update(Volante volante) {
+		Volante newAposta = this.findById(volante.getId());
+		updateData(newAposta, volante);
 		return volanteRepository.save(newAposta);
 	}
 	
-	private void updateData(Volante newAposta, Volante aposta) {
-		newAposta.setNumero(aposta.getNumero());
-		newAposta.setData(aposta.getData());
-		newAposta.setApostas(aposta.getApostas());
+	private void updateData(Volante newAposta, Volante volante) {
+		newAposta.setNumero(volante.getNumero());
+		newAposta.setData(volante.getData());
+		newAposta.setApostas(volante.getApostas());
 	}
 	
 	public void delete(String id) {

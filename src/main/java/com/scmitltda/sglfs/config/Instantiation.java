@@ -67,7 +67,7 @@ public class Instantiation implements CommandLineRunner {
 			for (int k=j; k<=15; k++) {
 				dezenas.add(k);
 			}
-			Aposta aposta = new Aposta(dezenas, 32.0);
+			Aposta aposta = new Aposta(dezenas, 32.0, 0, 0.00);
 			apostas.add(aposta);
 		}
 		
