@@ -23,6 +23,7 @@ import com.scmitltda.sglfs.domain.ResultadoCaixa;
 import com.scmitltda.sglfs.dto.ResultadoCaixaDTO;
 import com.scmitltda.sglfs.services.ResultadoCaixaService;
 import com.scmitltda.sglfs.services.exception.ObjectFoundException;
+import com.scmitltda.sglfs.services.exception.ObjectNotFoundException;
 
 @RestController
 @RequestMapping(value="/resultadoCaixas")
@@ -55,6 +56,10 @@ public class ResultadoCaixaResource {
 		
 		ResultadoCaixa resultadoCaixa = resultadoCaixaService.findByNumero(numero);
 		
+		if (resultadoCaixa == null) {
+			throw new ObjectNotFoundException("Número [" + numero + "] não existe.");
+		}
+		
 		return ResponseEntity.ok().body(new ResultadoCaixaDTO(resultadoCaixa));
 	}
 
@@ -62,7 +67,7 @@ public class ResultadoCaixaResource {
 	public ResponseEntity<Void> insert(@RequestBody ResultadoCaixaDTO resultadoCaixaDTO) {
 		
 		ResultadoCaixa resultadoCaixa = resultadoCaixaService.fromDTO(resultadoCaixaDTO);
-		
+				
 		resultadoCaixa = resultadoCaixaService.insert(resultadoCaixa);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(resultadoCaixa.getId()).toUri();
@@ -105,6 +110,8 @@ public class ResultadoCaixaResource {
 		
 		ResultadoCaixa resultadoCaixa =  restTemplate.getForObject(uriUltimo, ResultadoCaixa.class, params);
 		
+		System.out.println(resultadoCaixa.toString());
+		
 		Integer numero = Integer.parseInt(resultadoCaixa.getNumero());
 		
 		String uriByNumero = "https://www.lotodicas.com.br/api/{loteria}/{numero}";
@@ -115,6 +122,8 @@ public class ResultadoCaixaResource {
 			params.put("numero", i.toString());
 			
 			resultadoCaixa =  restTemplate.getForObject(uriByNumero, ResultadoCaixa.class, params);
+			
+			System.out.println(resultadoCaixa.toString());
 			
 			resultadoCaixaService.insert(resultadoCaixa);
 		}
@@ -146,5 +155,5 @@ public class ResultadoCaixaResource {
 		resultadoCaixaService.insert(resultadoCaixa);
 		
 		return ResponseEntity.noContent().build();
-	}
+	}	
 }
