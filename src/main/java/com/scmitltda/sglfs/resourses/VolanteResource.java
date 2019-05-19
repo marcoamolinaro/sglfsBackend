@@ -22,6 +22,7 @@ import com.scmitltda.sglfs.domain.Volante;
 import com.scmitltda.sglfs.dto.VolanteDTO;
 import com.scmitltda.sglfs.services.VolanteService;
 import com.scmitltda.sglfs.services.exception.InvalidArgumentNumberException;
+import com.scmitltda.sglfs.services.exception.ObjectNotFoundException;
 import com.scmitltda.sglfs.util.Util;
 
 @RestController
@@ -87,6 +88,10 @@ public class VolanteResource {
 		
 		List<Volante> volantes = volanteService.findByNumero(numero);
 		
+		if (volantes.isEmpty()) {
+			throw new ObjectNotFoundException("Número [" + numero + "] não existe.");
+		}
+				
 		List<VolanteDTO> volantesDto = 
 				volantes.stream().map(r -> new VolanteDTO(r)).collect(Collectors.toList());
 		
