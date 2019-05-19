@@ -1,7 +1,6 @@
 package com.scmitltda.sglfs.domain;
 
 import java.io.Serializable;
-import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,8 +17,8 @@ public class Resultado implements Serializable {
 	private String id;
 	private String numero;
 	private String data;
-	private List<Integer> sorteio;
-	private List<Double> rateio;
+	private Aposta aposta;
+	private ResultadoCaixa resultadoCaixa;
 	
 	public Resultado() {}
 	
@@ -27,14 +26,14 @@ public class Resultado implements Serializable {
 			String id, 
 			String numero, 
 			String data,
-			List<Integer> sorteio,
-			List<Double> rateio) {
+			Aposta aposta,
+			ResultadoCaixa resultadoCaixa) {
 		super();
 		this.id = id;
 		this.numero = numero;
 		this.data = data;
-		this.sorteio = sorteio;
-		this.rateio = rateio;
+		this.aposta = aposta;
+		this.resultadoCaixa = resultadoCaixa;
 	}
 
 	public String getId() {
@@ -61,20 +60,20 @@ public class Resultado implements Serializable {
 		this.data =  data;
 	}
 
-	public List<Integer> getSorteio() {
-		return sorteio;
+	public Aposta getAposta() {
+		return aposta;
 	}
 
-	public void setSorteio(List<Integer> sorteio) {
-		this.sorteio = sorteio;
+	public void setAposta(Aposta aposta) {
+		this.aposta = aposta;
 	}
 
-	public List<Double> getRateio() {
-		return rateio;
+	public ResultadoCaixa getResultadoCaixa() {
+		return resultadoCaixa;
 	}
 
-	public void setRateio(List<Double> rateio) {
-		this.rateio = rateio;
+	public void setResultadoCaixa(ResultadoCaixa resultadoCaixa) {
+		this.resultadoCaixa = resultadoCaixa;
 	}
 
 	@Override
@@ -104,6 +103,7 @@ public class Resultado implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Resultado [id=" + id + ", numero=" + numero + ", data=" + data + ", sorteio=" + sorteio + rateio + "]";
+		return "Resultado [id=" + id + ", numero=" + numero + ", data=" + data + ", aposta=" + aposta
+				+ ", resultadoCaixa=" + resultadoCaixa + "]";
 	}	
 }

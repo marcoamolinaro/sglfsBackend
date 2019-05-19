@@ -51,16 +51,16 @@ public class ResultadoService {
 	private void updateData(Resultado newResultado, Resultado resultado) {
 		newResultado.setNumero(resultado.getNumero());
 		newResultado.setData(resultado.getData());
-		newResultado.setSorteio(resultado.getSorteio());
-		newResultado.setRateio(resultado.getRateio());
+		newResultado.setAposta(resultado.getAposta());
+		newResultado.setResultadoCaixa(resultado.getResultadoCaixa());
 	}
 
 	public Resultado fromDTO(ResultadoDTO resultadoDTO) {
 		return new Resultado(
 				resultadoDTO.getId(), 
 				resultadoDTO.getNumero(), 
-				resultadoDTO.getData(), 
-				resultadoDTO.getSorteio(),
-				resultadoDTO.getRateio());
+				resultadoDTO.getData(),
+				resultadoDTO.getAposta(),
+				resultadoDTO.getResultadoCaixa());
 	}
 }

@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.scmitltda.sglfs.domain.Aposta;
 import com.scmitltda.sglfs.domain.Resultado;
+import com.scmitltda.sglfs.domain.ResultadoCaixa;
 import com.scmitltda.sglfs.domain.Volante;
 import com.scmitltda.sglfs.repository.ResultadoRepository;
 import com.scmitltda.sglfs.repository.VolanteRepository;
@@ -47,8 +48,8 @@ public class Instantiation implements CommandLineRunner {
 			rateio.add(i);
 		}
 		
-		Resultado r1 = new Resultado(null, "1", "10-04-2019", sorteio, rateio);
-		Resultado r2 = new Resultado(null, "2", "12-04-2019", sorteio, rateio);
+		Resultado r1 = new Resultado(null, "1", "10-04-2019", new Aposta(), new ResultadoCaixa());
+		Resultado r2 = new Resultado(null, "2", "12-04-2019", new Aposta(), new ResultadoCaixa());
 		
 		resultadoRepository.saveAll(Arrays.asList(r1, r2));
 		

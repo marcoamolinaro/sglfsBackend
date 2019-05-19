@@ -1,9 +1,10 @@
 package com.scmitltda.sglfs.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
+import com.scmitltda.sglfs.domain.Aposta;
 import com.scmitltda.sglfs.domain.Resultado;
+import com.scmitltda.sglfs.domain.ResultadoCaixa;
 
 public class ResultadoDTO implements Serializable {
 
@@ -15,8 +16,8 @@ public class ResultadoDTO implements Serializable {
 	private String id;
 	private String numero;
 	private String data;
-	private List<Integer> sorteio;
-	private List<Double> rateio;
+	private Aposta aposta;
+	private ResultadoCaixa resultadoCaixa;
 	
 	public ResultadoDTO() {}
 	
@@ -24,8 +25,8 @@ public class ResultadoDTO implements Serializable {
 		this.id = resultado.getId();
 		this.numero = resultado.getNumero();
 		this.data = resultado.getData();
-		this.sorteio = resultado.getSorteio();
-		this.rateio = resultado.getRateio();
+		this.aposta = resultado.getAposta();
+		this.resultadoCaixa = resultado.getResultadoCaixa();
 	}
 
 	public String getId() {
@@ -52,19 +53,19 @@ public class ResultadoDTO implements Serializable {
 		this.data = data;
 	}
 
-	public List<Integer> getSorteio() {
-		return sorteio;
-	}
-	
-	public void setSorteio(List<Integer> sorteio) {
-		this.sorteio = sorteio;
+	public Aposta getAposta() {
+		return aposta;
 	}
 
-	public List<Double> getRateio() {
-		return rateio;
+	public void setAposta(Aposta aposta) {
+		this.aposta = aposta;
 	}
 
-	public void setRateio(List<Double> rateio) {
-		this.rateio = rateio;
+	public ResultadoCaixa getResultadoCaixa() {
+		return resultadoCaixa;
+	}
+
+	public void setResultadoCaixa(ResultadoCaixa resultadoCaixa) {
+		this.resultadoCaixa = resultadoCaixa;
 	}
 }
