@@ -1,6 +1,7 @@
 package com.scmitltda.sglfs.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.scmitltda.sglfs.domain.Aposta;
 import com.scmitltda.sglfs.domain.Resultado;
@@ -16,7 +17,7 @@ public class ResultadoDTO implements Serializable {
 	private String id;
 	private String numero;
 	private String data;
-	private Aposta aposta;
+	private List<Aposta> apostas;
 	private ResultadoCaixa resultadoCaixa;
 	
 	public ResultadoDTO() {}
@@ -25,7 +26,7 @@ public class ResultadoDTO implements Serializable {
 		this.id = resultado.getId();
 		this.numero = resultado.getNumero();
 		this.data = resultado.getData();
-		this.aposta = resultado.getAposta();
+		this.apostas = resultado.getApostas();
 		this.resultadoCaixa = resultado.getResultadoCaixa();
 	}
 
@@ -53,12 +54,12 @@ public class ResultadoDTO implements Serializable {
 		this.data = data;
 	}
 
-	public Aposta getAposta() {
-		return aposta;
+	public List<Aposta> getApostas() {
+		return apostas;
 	}
 
-	public void setAposta(Aposta aposta) {
-		this.aposta = aposta;
+	public void setApostas(List<Aposta> apostas) {
+		this.apostas = apostas;
 	}
 
 	public ResultadoCaixa getResultadoCaixa() {

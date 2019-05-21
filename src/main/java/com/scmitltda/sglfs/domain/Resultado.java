@@ -1,6 +1,7 @@
 package com.scmitltda.sglfs.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -17,7 +18,7 @@ public class Resultado implements Serializable {
 	private String id;
 	private String numero;
 	private String data;
-	private Aposta aposta;
+	private List<Aposta> apostas;
 	private ResultadoCaixa resultadoCaixa;
 	
 	public Resultado() {}
@@ -26,13 +27,13 @@ public class Resultado implements Serializable {
 			String id, 
 			String numero, 
 			String data,
-			Aposta aposta,
+			List<Aposta> apostas,
 			ResultadoCaixa resultadoCaixa) {
 		super();
 		this.id = id;
 		this.numero = numero;
 		this.data = data;
-		this.aposta = aposta;
+		this.apostas = apostas;
 		this.resultadoCaixa = resultadoCaixa;
 	}
 
@@ -60,12 +61,12 @@ public class Resultado implements Serializable {
 		this.data =  data;
 	}
 
-	public Aposta getAposta() {
-		return aposta;
+	public List<Aposta> getApostas() {
+		return apostas;
 	}
 
-	public void setAposta(Aposta aposta) {
-		this.aposta = aposta;
+	public void setApostas(List<Aposta> apostas) {
+		this.apostas = apostas;
 	}
 
 	public ResultadoCaixa getResultadoCaixa() {
@@ -103,7 +104,7 @@ public class Resultado implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Resultado [id=" + id + ", numero=" + numero + ", data=" + data + ", aposta=" + aposta
+		return "Resultado [id=" + id + ", numero=" + numero + ", data=" + data + ", apostas=" + apostas
 				+ ", resultadoCaixa=" + resultadoCaixa + "]";
 	}	
 }

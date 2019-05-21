@@ -32,30 +32,6 @@ public class Instantiation implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		// preparar classe Resultado
-		resultadoRepository.deleteAll();
-		
-		List<Integer> sorteio = new ArrayList<Integer>();
-		
-		for (Integer i = 1; i <= 15; i++) {
-			sorteio.add(i);
-		}
-		
-		List<Double> rateio = new ArrayList<Double>();
-		
-		for (Double i = 0.01; i <= 5; i++) {
-			rateio.add(i);
-		}
-		
-		Resultado r1 = new Resultado(null, "1", "10-04-2019", new Aposta(), new ResultadoCaixa());
-		Resultado r2 = new Resultado(null, "2", "12-04-2019", new Aposta(), new ResultadoCaixa());
-		
-		resultadoRepository.saveAll(Arrays.asList(r1, r2));
-		
-		// Preparar classe ResultadoCaixa
-		//resultadoCaixaRepository.deleteAll();
-		
 		// Preparar classe Aposta
 		volanteRepository.deleteAll();
 		
@@ -72,9 +48,84 @@ public class Instantiation implements CommandLineRunner {
 			apostas.add(aposta);
 		}
 		
+		Aposta a1 = new Aposta();
+		
+		List<Integer> d1 = new ArrayList<Integer>();
+		d1.add(18);
+		d1.add(20);
+		d1.add(25);
+		d1.add(23);
+		d1.add(10);
+		d1.add(11);
+		d1.add(24);
+		d1.add(14);
+		d1.add(6);
+		d1.add(2);
+		d1.add(13);
+		d1.add(9);
+		d1.add(5);
+		d1.add(16);
+		d1.add(3);
+		
+		a1.setDezenas(d1);
+		a1.setValor(4.0);
+		a1.setQtdDezenasAcerto(0);
+		a1.setValorGanho(0.00);
+		
+		apostas.add(a1);
+		
+		Aposta a2 = new Aposta();
+		
+		List<Integer> d2 = new ArrayList<Integer>();
+		d2.add(18);
+		d2.add(20);
+		d2.add(25);
+		d2.add(23);
+		d2.add(10);
+		d2.add(11);
+		d2.add(24);
+		d2.add(14);
+		d2.add(6);
+		d2.add(2);
+		d2.add(13);
+		d2.add(9);
+		d2.add(5);
+		d2.add(16);
+		d2.add(1);
+		
+		a2.setDezenas(d2);
+		a2.setValor(4.0);
+		a2.setQtdDezenasAcerto(0);
+		a2.setValorGanho(0.00);
+		
+		apostas.add(a2);
 		
 		Volante v1 = new Volante(null, "1", "10-04-2019", apostas);
 		
 		volanteRepository.saveAll(Arrays.asList(v1));
+
+		// preparar classe Resultado
+		resultadoRepository.deleteAll();
+		
+		/*
+		List<Integer> sorteio = new ArrayList<Integer>();
+		
+		for (Integer i = 1; i <= 15; i++) {
+			sorteio.add(i);
+		}
+		
+		List<Double> rateio = new ArrayList<Double>();
+		
+		for (Double i = 0.01; i <= 5; i++) {
+			rateio.add(i);
+		}
+		
+		Resultado r1 = new Resultado(null, "1", "10-04-2019", apostas, new ResultadoCaixa());
+		
+		resultadoRepository.saveAll(Arrays.asList(r1));
+		
+		// Preparar classe ResultadoCaixa
+		//resultadoCaixaRepository.deleteAll();
+		*/
 	}
 }

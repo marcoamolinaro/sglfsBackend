@@ -46,5 +46,18 @@ public class Util {
 		}
 		return valor;
 	}
+	
+	public static Integer verifyBetting(List<Integer> dezenasApostadas, List<Integer> dezenasSorteadas) {
+		
+		Integer acertos = 0;
+		
+		for (Integer dezenaApostada: dezenasApostadas) {	
+			if (dezenasSorteadas.contains(dezenaApostada)) {
+				acertos++;
+			}
+		}
+		
+		return acertos; 
+	}
 
 }

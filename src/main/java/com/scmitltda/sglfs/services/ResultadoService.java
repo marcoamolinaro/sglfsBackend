@@ -51,7 +51,7 @@ public class ResultadoService {
 	private void updateData(Resultado newResultado, Resultado resultado) {
 		newResultado.setNumero(resultado.getNumero());
 		newResultado.setData(resultado.getData());
-		newResultado.setAposta(resultado.getAposta());
+		newResultado.setApostas(resultado.getApostas());
 		newResultado.setResultadoCaixa(resultado.getResultadoCaixa());
 	}
 
@@ -60,7 +60,7 @@ public class ResultadoService {
 				resultadoDTO.getId(), 
 				resultadoDTO.getNumero(), 
 				resultadoDTO.getData(),
-				resultadoDTO.getAposta(),
+				resultadoDTO.getApostas(),
 				resultadoDTO.getResultadoCaixa());
 	}
 }
