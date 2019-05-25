@@ -117,6 +117,9 @@ public class ResultadoResource {
 			throw new ObjectFoundException("Não existe Volantes para o número [" + numero + "].");
 		}
 		
+		Double valorTotalAposta = 0.0;
+		Double valorTotalGanho = 0.0;
+		
 		for (Volante volante: volantes) {
 			List<Aposta> apostas = volante.getApostas();
 			
@@ -142,7 +145,12 @@ public class ResultadoResource {
 					aposta.setValorGanho(resultadoCaixa.getRateio().get(4));
 					break;
 				}
+				
+				valorTotalAposta += aposta.getValor();
+				valorTotalGanho += aposta.getValorGanho();
 			}
+			
+			
 						
 			ResultadoDTO resultadoDto = new ResultadoDTO();
 			
@@ -150,6 +158,8 @@ public class ResultadoResource {
 			resultadoDto.setData(resultadoCaixa.getData());
 			resultadoDto.setApostas(apostas);
 			resultadoDto.setResultadoCaixa(resultadoCaixa);
+			resultadoDto.setValorTotalAposta(valorTotalAposta);
+			resultadoDto.setValorTotalGanho(valorTotalGanho);
 						
 			Resultado resultado = resultadoService.fromDTO(resultadoDto);
 			

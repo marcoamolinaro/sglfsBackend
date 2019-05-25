@@ -20,6 +20,8 @@ public class Resultado implements Serializable {
 	private String data;
 	private List<Aposta> apostas;
 	private ResultadoCaixa resultadoCaixa;
+	private Double valorTotalAposta;
+	private Double valorTotalGanho;
 	
 	public Resultado() {}
 	
@@ -28,13 +30,17 @@ public class Resultado implements Serializable {
 			String numero, 
 			String data,
 			List<Aposta> apostas,
-			ResultadoCaixa resultadoCaixa) {
+			ResultadoCaixa resultadoCaixa,
+			Double valorTotalAposta,
+			Double valorTotalGanho) {
 		super();
 		this.id = id;
 		this.numero = numero;
 		this.data = data;
 		this.apostas = apostas;
 		this.resultadoCaixa = resultadoCaixa;
+		this.valorTotalAposta = valorTotalAposta;
+		this.valorTotalGanho = valorTotalGanho;
 	}
 
 	public String getId() {
@@ -77,6 +83,23 @@ public class Resultado implements Serializable {
 		this.resultadoCaixa = resultadoCaixa;
 	}
 
+	
+	public Double getValorTotalAposta() {
+		return valorTotalAposta;
+	}
+
+	public void setValorTotalAposta(Double valorTotalAposta) {
+		this.valorTotalAposta = valorTotalAposta;
+	}
+
+	public Double getValorTotalGanho() {
+		return valorTotalGanho;
+	}
+
+	public void setValorTotalGanho(Double valorTotalGanho) {
+		this.valorTotalGanho = valorTotalGanho;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -105,6 +128,7 @@ public class Resultado implements Serializable {
 	@Override
 	public String toString() {
 		return "Resultado [id=" + id + ", numero=" + numero + ", data=" + data + ", apostas=" + apostas
-				+ ", resultadoCaixa=" + resultadoCaixa + "]";
+				+ ", resultadoCaixa=" + resultadoCaixa + ", valorTotalAposta=" + valorTotalAposta + ", valorTotalGanho="
+				+ valorTotalGanho + "]";
 	}	
 }

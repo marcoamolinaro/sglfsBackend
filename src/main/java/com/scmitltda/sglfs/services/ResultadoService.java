@@ -53,6 +53,8 @@ public class ResultadoService {
 		newResultado.setData(resultado.getData());
 		newResultado.setApostas(resultado.getApostas());
 		newResultado.setResultadoCaixa(resultado.getResultadoCaixa());
+		newResultado.setValorTotalAposta(resultado.getValorTotalAposta());
+		newResultado.setValorTotalGanho(resultado.getValorTotalGanho());
 	}
 
 	public Resultado fromDTO(ResultadoDTO resultadoDTO) {
@@ -61,6 +63,8 @@ public class ResultadoService {
 				resultadoDTO.getNumero(), 
 				resultadoDTO.getData(),
 				resultadoDTO.getApostas(),
-				resultadoDTO.getResultadoCaixa());
+				resultadoDTO.getResultadoCaixa(),
+				resultadoDTO.getValorTotalAposta(),
+				resultadoDTO.getValorTotalGanho());
 	}
 }

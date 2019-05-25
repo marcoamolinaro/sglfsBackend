@@ -19,6 +19,8 @@ public class ResultadoDTO implements Serializable {
 	private String data;
 	private List<Aposta> apostas;
 	private ResultadoCaixa resultadoCaixa;
+	private Double valorTotalAposta;
+	private Double valorTotalGanho;
 	
 	public ResultadoDTO() {}
 	
@@ -28,6 +30,8 @@ public class ResultadoDTO implements Serializable {
 		this.data = resultado.getData();
 		this.apostas = resultado.getApostas();
 		this.resultadoCaixa = resultado.getResultadoCaixa();
+		this.valorTotalAposta = resultado.getValorTotalAposta();
+		this.valorTotalGanho = resultado.getValorTotalGanho();
 	}
 
 	public String getId() {
@@ -68,5 +72,21 @@ public class ResultadoDTO implements Serializable {
 
 	public void setResultadoCaixa(ResultadoCaixa resultadoCaixa) {
 		this.resultadoCaixa = resultadoCaixa;
+	}
+
+	public Double getValorTotalAposta() {
+		return valorTotalAposta;
+	}
+
+	public void setValorTotalAposta(Double valorTotalAposta) {
+		this.valorTotalAposta = valorTotalAposta;
+	}
+
+	public Double getValorTotalGanho() {
+		return valorTotalGanho;
+	}
+
+	public void setValorTotalGanho(Double valorTotalGanho) {
+		this.valorTotalGanho = valorTotalGanho;
 	}
 }

@@ -10,8 +10,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import com.scmitltda.sglfs.domain.Aposta;
-import com.scmitltda.sglfs.domain.Resultado;
-import com.scmitltda.sglfs.domain.ResultadoCaixa;
 import com.scmitltda.sglfs.domain.Volante;
 import com.scmitltda.sglfs.repository.ResultadoRepository;
 import com.scmitltda.sglfs.repository.VolanteRepository;
