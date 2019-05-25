@@ -22,7 +22,7 @@ import com.scmitltda.sglfs.services.ValorApostaService;
 import com.scmitltda.sglfs.services.exception.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value="/valorApostas")
+@RequestMapping(value="/valorapostas")
 public class ValorApostaResource {
 	
 	@Autowired
@@ -89,7 +89,6 @@ public class ValorApostaResource {
 		}
 				
 		ValorApostaDTO valorApostaDto = new ValorApostaDTO(valorAposta);
-				
 		
 		return ResponseEntity.ok().body(valorApostaDto);
 	}	

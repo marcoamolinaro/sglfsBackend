@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.scmitltda.sglfs.domain.Aposta;
+import com.scmitltda.sglfs.domain.ValorAposta;
 import com.scmitltda.sglfs.domain.Volante;
 import com.scmitltda.sglfs.dto.VolanteDTO;
+import com.scmitltda.sglfs.services.ValorApostaService;
 import com.scmitltda.sglfs.services.VolanteService;
 import com.scmitltda.sglfs.services.exception.InvalidArgumentNumberException;
 import com.scmitltda.sglfs.services.exception.ObjectNotFoundException;
@@ -31,6 +33,9 @@ public class VolanteResource {
 	
 	@Autowired
 	private VolanteService volanteService;
+	
+	@Autowired
+	private ValorApostaService valorApostaService;
 	
 	@GetMapping
 	public ResponseEntity<List<VolanteDTO>> findAll() {
@@ -122,7 +127,12 @@ public class VolanteResource {
 					"Quantidade de apostas deve ser: 15, 16, 17 ou 18");			
 		}
 		
-		Double valorAposta = Util.getValorAposta(qtde_dezenas);
+		ValorAposta valorAposta = valorApostaService.findByQtdAposta(qtde_dezenas.toString());
+		
+		if (valorAposta == null) {
+			throw new InvalidArgumentNumberException(
+					"Não existe valor de aposta para essa quantidade de dezenas ["+qtde_dezenas+"]");						
+		}
 		
 		List<Integer> dezenas_apostadas = new ArrayList<Integer>();
 		
@@ -132,7 +142,7 @@ public class VolanteResource {
 			Aposta aposta = new Aposta();
 			dezenas_apostadas = Util.generateAposta(qtde_dezenas);
 			aposta.setDezenas(dezenas_apostadas);
-			aposta.setValor(valorAposta);
+			aposta.setValor(valorAposta.getValorAposta());
 			aposta.setQtdDezenasAcerto(0);
 			aposta.setValorGanho(0.00);
 			apostas.add(aposta);
@@ -143,6 +153,12 @@ public class VolanteResource {
 		volanteDto.setApostas(apostas);
 		volanteDto.setData(data);
 		volanteDto.setNumero(numero);
+		
+		Volante volante = volanteService.fromDTO(volanteDto);
+		
+		volante = volanteService.insert(volante);
+				
+		volanteDto.setId(volante.getId());
 		
 		return ResponseEntity.ok().body(volanteDto);
 	}

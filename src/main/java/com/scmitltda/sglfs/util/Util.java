@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Util {
-	
+		
 	private static Integer generateDezena() {
 		Random random = new Random();
 		return random.nextInt(25);
@@ -26,25 +26,6 @@ public class Util {
 		}
 
 		return dezenas;
-	}
-	
-	public static Double getValorAposta(Integer qtde_dezenas) {
-		double valor = 0;
-		switch (qtde_dezenas) {
-		case 15:
-			valor = 2;
-			break;
-		case 16:
-			valor = 32;
-			break;
-		case 17:
-			valor = 272;
-			break;
-		case 18:
-			valor = 1632;
-			break;
-		}
-		return valor;
 	}
 	
 	public static Integer verifyBetting(List<Integer> dezenasApostadas, List<Integer> dezenasSorteadas) {

@@ -108,6 +108,8 @@ public class Instantiation implements CommandLineRunner {
 		resultadoRepository.deleteAll();
 		
 		// preparar Classe ValorAposta
+		valorApostaRepository.deleteAll();
+		
 		ValorAposta valorAposta = new ValorAposta(null, "15", 2.0);
 		
 		valorApostaRepository.insert(valorAposta);
