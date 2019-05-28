@@ -149,9 +149,7 @@ public class ResultadoResource {
 				valorTotalAposta += aposta.getValor();
 				valorTotalGanho += aposta.getValorGanho();
 			}
-			
-			
-						
+				
 			ResultadoDTO resultadoDto = new ResultadoDTO();
 			
 			resultadoDto.setNumero(numero);

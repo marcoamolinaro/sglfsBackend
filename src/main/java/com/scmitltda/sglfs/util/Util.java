@@ -40,5 +40,4 @@ public class Util {
 		
 		return acertos; 
 	}
-
 }
