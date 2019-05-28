@@ -1,8 +1,6 @@
 // TODO
 
-- Create a new class to hold valor of the betting;
-
-- Create a new service to verify the betting numbers
+- Create a new method at Util class to calculate the won value according with the betting quantity numbers and hits numbers.
 
 - Create function to validate the betting numbers generated according with the criterias 
 
