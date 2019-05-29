@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.scmitltda.sglfs.domain.Aposta;
+import com.scmitltda.sglfs.domain.ApostaAcerto;
 import com.scmitltda.sglfs.domain.Resultado;
 import com.scmitltda.sglfs.domain.ResultadoCaixa;
 import com.scmitltda.sglfs.domain.Volante;
 import com.scmitltda.sglfs.dto.ResultadoDTO;
+import com.scmitltda.sglfs.services.ApostaAcertoService;
 import com.scmitltda.sglfs.services.ResultadoCaixaService;
 import com.scmitltda.sglfs.services.ResultadoService;
 import com.scmitltda.sglfs.services.VolanteService;
@@ -40,6 +42,9 @@ public class ResultadoResource {
 	
 	@Autowired
 	private VolanteService volanteService;
+	
+	@Autowired 
+	public ApostaAcertoService apostaAcertoyService;
 	
 	@GetMapping
 	public ResponseEntity<List<ResultadoDTO>> findAll() {
@@ -119,6 +124,8 @@ public class ResultadoResource {
 		
 		Double valorTotalAposta = 0.0;
 		Double valorTotalGanho = 0.0;
+		Double valorGanho = 0.0;
+		String key = "";
 		
 		for (Volante volante: volantes) {
 			List<Aposta> apostas = volante.getApostas();
@@ -128,26 +135,43 @@ public class ResultadoResource {
 				
 				aposta.setQtdDezenasAcerto(acertos);
 				
-				switch (acertos) {
-				case 15:
-					aposta.setValorGanho(resultadoCaixa.getRateio().get(0));
-					break;
-				case 14:
-					aposta.setValorGanho(resultadoCaixa.getRateio().get(1));
-					break;
-				case 13:
-					aposta.setValorGanho(resultadoCaixa.getRateio().get(2));
-					break;
-				case 12:
-					aposta.setValorGanho(resultadoCaixa.getRateio().get(3));
-					break;
-				case 11:
-					aposta.setValorGanho(resultadoCaixa.getRateio().get(4));
-					break;
-				}
+				key = aposta.getDezenas().size()+""+acertos;
 				
+				if (acertos >= 11) {
+					ApostaAcerto apostaAcerto = apostaAcertoyService.findByKey(key);
+					
+					if (apostaAcerto != null) {
+						valorGanho += 
+								((	apostaAcerto.getFator().get(0) * resultadoCaixa.getRateio().get(0) ) + 
+								 (  apostaAcerto.getFator().get(1) * resultadoCaixa.getRateio().get(1) ) + 
+								 (  apostaAcerto.getFator().get(2) * resultadoCaixa.getRateio().get(2) ) + 
+								 (  apostaAcerto.getFator().get(3) * resultadoCaixa.getRateio().get(3) ) +
+								 (  apostaAcerto.getFator().get(4) * resultadoCaixa.getRateio().get(4) ));	
+						
+						/*
+						System.out.println("Faixa 1 = " + apostaAcerto.getFator().get(0));
+						System.out.println("Faixa 2 = " + apostaAcerto.getFator().get(1));
+						System.out.println("Faixa 3 = " + apostaAcerto.getFator().get(2));
+						System.out.println("Faixa 4 = " + apostaAcerto.getFator().get(3));
+						System.out.println("Faixa 5 = " + apostaAcerto.getFator().get(4));
+						
+						System.out.println("Rateio 15 ptos = " + resultadoCaixa.getRateio().get(0));
+						System.out.println("Rateio 14 ptos = " + resultadoCaixa.getRateio().get(1));
+						System.out.println("Rateio 13 ptos = " + resultadoCaixa.getRateio().get(2));
+						System.out.println("Rateio 12 ptos = " + resultadoCaixa.getRateio().get(3));
+						System.out.println("Rateio 11 ptos = " + resultadoCaixa.getRateio().get(4));
+						
+						System.out.println("Valor Ganho = " + valorGanho);
+						*/
+					} 
+					
+					aposta.setValorGanho(valorGanho);
+					
+					valorGanho = 0.0;
+				
+					valorTotalGanho += aposta.getValorGanho();
+				}
 				valorTotalAposta += aposta.getValor();
-				valorTotalGanho += aposta.getValorGanho();
 			}
 				
 			ResultadoDTO resultadoDto = new ResultadoDTO();

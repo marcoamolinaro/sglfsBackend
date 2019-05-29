@@ -27,8 +27,8 @@ public class Instantiation implements CommandLineRunner {
 	@Autowired
 	private VolanteRepository volanteRepository;
 	
-	@Autowired
-	private ApostaAcertoRepository apostaAcertoRepository;
+	//@Autowired
+	//private ApostaAcertoRepository apostaAcertoRepository;
 	
 	//@Autowired
 	//private ValorApostaRepository valorApostaRepository;
@@ -103,7 +103,36 @@ public class Instantiation implements CommandLineRunner {
 		
 		apostas.add(a2);
 		
-		Volante v1 = new Volante(null, "1", "10-04-2019", apostas);
+		Aposta a3 = new Aposta();
+		
+		List<Integer> d3 = new ArrayList<Integer>();
+		d3.add(1);
+		d3.add(3);
+		d3.add(4);
+		d3.add(6);
+		d3.add(7);
+		d3.add(9);
+		d3.add(12);
+		d3.add(13);
+		d3.add(14);
+		d3.add(16);
+		d3.add(19);
+		d3.add(21);
+		d3.add(22);
+		d3.add(24);
+		d3.add(25);
+		d3.add(18);
+		d3.add(20);
+		
+		a3.setDezenas(d3);
+		a3.setValor(272.0);
+		a3.setQtdDezenasAcerto(0);
+		a3.setValorGanho(0.00);
+		
+		apostas.add(a3);
+
+		
+		Volante v1 = new Volante(null, "1810", "06-05-2019", apostas);
 		
 		volanteRepository.saveAll(Arrays.asList(v1));
 
@@ -111,6 +140,7 @@ public class Instantiation implements CommandLineRunner {
 		resultadoRepository.deleteAll();
 		
 		// Preparar classe ApostaAcerto
+		/*
 		apostaAcertoRepository.deleteAll();
 		
 		ApostaAcerto aa1 = new ApostaAcerto();
@@ -337,7 +367,7 @@ public class Instantiation implements CommandLineRunner {
 				aa8, aa9, aa10, aa11, aa12, aa13, aa14, aa15, aa16, aa17, aa18, aa19, aa20));
 		
 		// preparar Classe ValorAposta
-		/*
+		
 		valorApostaRepository.deleteAll();
 		
 		ValorAposta valorAposta = new ValorAposta(null, "15", 2.0);
