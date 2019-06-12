@@ -109,9 +109,7 @@ public class ResultadoCaixaResource {
 		 params.put("loteria", loteria);
 		
 		ResultadoCaixa resultadoCaixa =  restTemplate.getForObject(uriUltimo, ResultadoCaixa.class, params);
-		
-		System.out.println(resultadoCaixa.toString());
-		
+				
 		Integer numero = Integer.parseInt(resultadoCaixa.getNumero());
 		
 		String uriByNumero = "https://www.lotodicas.com.br/api/{loteria}/{numero}";
@@ -122,8 +120,6 @@ public class ResultadoCaixaResource {
 			params.put("numero", i.toString());
 			
 			resultadoCaixa =  restTemplate.getForObject(uriByNumero, ResultadoCaixa.class, params);
-			
-			System.out.println(resultadoCaixa.toString());
 			
 			resultadoCaixaService.insert(resultadoCaixa);
 		}
