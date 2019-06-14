@@ -1,31 +1,19 @@
 package com.scmitltda.sglfs.config;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
-
-import com.scmitltda.sglfs.domain.Aposta;
-import com.scmitltda.sglfs.domain.ApostaAcerto;
-import com.scmitltda.sglfs.domain.Volante;
-import com.scmitltda.sglfs.repository.ApostaAcertoRepository;
-import com.scmitltda.sglfs.repository.ResultadoRepository;
-import com.scmitltda.sglfs.repository.VolanteRepository;
 
 //import com.scmitltda.sglfs.repository.ResultadoRepository;
 
 @Configuration
 public class Instantiation implements CommandLineRunner {
 	
-	@Autowired
-	private ResultadoRepository resultadoRepository;
+	//@Autowired
+	//private ResultadoRepository resultadoRepository;
 	
-	@Autowired
-	private VolanteRepository volanteRepository;
+	//@Autowired
+	//private VolanteRepository volanteRepository;
 	
 	//@Autowired
 	//private ApostaAcertoRepository apostaAcertoRepository;
@@ -36,6 +24,7 @@ public class Instantiation implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// Preparar classe Aposta
+		/*
 		volanteRepository.deleteAll();
 		
 		List<Aposta> apostas = new ArrayList<Aposta>();
@@ -135,7 +124,7 @@ public class Instantiation implements CommandLineRunner {
 		Volante v1 = new Volante(null, "1810", "06-05-2019", apostas);
 		
 		volanteRepository.saveAll(Arrays.asList(v1));
-
+		
 		// preparar classe Resultado
 		resultadoRepository.deleteAll();
 		

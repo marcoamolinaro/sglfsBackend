@@ -2,6 +2,7 @@ package com.scmitltda.sglfs.resourses;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,9 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.scmitltda.sglfs.domain.Aposta;
+import com.scmitltda.sglfs.domain.ResultadoCaixa;
 import com.scmitltda.sglfs.domain.ValorAposta;
 import com.scmitltda.sglfs.domain.Volante;
 import com.scmitltda.sglfs.dto.VolanteDTO;
+import com.scmitltda.sglfs.services.ResultadoCaixaService;
 import com.scmitltda.sglfs.services.ValorApostaService;
 import com.scmitltda.sglfs.services.VolanteService;
 import com.scmitltda.sglfs.services.exception.InvalidArgumentNumberException;
@@ -36,6 +39,9 @@ public class VolanteResource {
 	
 	@Autowired
 	private ValorApostaService valorApostaService;
+	
+	@Autowired
+	private ResultadoCaixaService resultadoCaixaService;
 	
 	@GetMapping
 	public ResponseEntity<List<VolanteDTO>> findAll() {
@@ -134,18 +140,38 @@ public class VolanteResource {
 					"Não existe valor de aposta para essa quantidade de dezenas ["+qtde_dezenas+"]");						
 		}
 		
-		List<Integer> dezenas_apostadas = new ArrayList<Integer>();
+		List<Integer> dezenas_geradas = new ArrayList<Integer>();
+		List<List<Integer>> dezenas_apostadas = new ArrayList<List<Integer>>();
 		
 		List<Aposta> apostas = new ArrayList<Aposta>();
 		
-		for(int i=1; i <= qtde_apostas; i++) {
+		List<ResultadoCaixa> resultadoCaixas = resultadoCaixaService.findAll();
+		
+		int i = 0;
+		
+		while(i < qtde_apostas) {
 			Aposta aposta = new Aposta();
-			dezenas_apostadas = Util.generateAposta(qtde_dezenas);
-			aposta.setDezenas(dezenas_apostadas);
-			aposta.setValor(valorAposta.getValorAposta());
-			aposta.setQtdDezenasAcerto(0);
-			aposta.setValorGanho(0.00);
-			apostas.add(aposta);
+			dezenas_geradas = Util.generateAposta(qtde_dezenas);
+			Collections.sort(dezenas_geradas);
+			System.out.println("Dezenas geradas depois do sort... " + dezenas_geradas);
+			System.out.println("Dezenas apostadas................ " + dezenas_apostadas);			
+			if (!dezenas_apostadas.contains(dezenas_geradas)) {
+				dezenas_apostadas.add(dezenas_geradas);
+				if (Util.validade13Matches(dezenas_geradas, resultadoCaixas)) {
+					i++;
+					System.out.println("Dezenas válidas.................. " + dezenas_geradas + "");
+					System.out.println("Qtde geradas válidas............. " + i);
+					aposta.setDezenas(dezenas_geradas);
+					aposta.setValor(valorAposta.getValorAposta());
+					aposta.setQtdDezenasAcerto(0);
+					aposta.setValorGanho(0.00);
+					apostas.add(aposta);
+				} else {
+					System.out.println("Dezenas descartadas matches 13... " + dezenas_geradas );
+				}
+			} else {
+				System.out.println("Dezenas descartadas já geradas... " + dezenas_geradas );
+			}
 		}
 		
 		VolanteDTO volanteDto = new VolanteDTO();
