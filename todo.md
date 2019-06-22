@@ -1,6 +1,8 @@
 // TODO
 
-- Create function to validate the betting numbers generated according with the criterias 
+- Create class Criteria with all rest full services
+
+- Modify validate functions to use information retrieved of class criteria
 
 - Create UI - Prototype
 	- start screen 
