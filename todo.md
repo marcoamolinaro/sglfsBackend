@@ -1,6 +1,5 @@
 // TODO
 
-- Create class Criteria with all rest full services
 
 - Modify validate functions to use information retrieved of class criteria
 

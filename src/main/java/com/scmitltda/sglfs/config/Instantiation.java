@@ -33,6 +33,7 @@ public class Instantiation implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		/*
 		// Preparando classe Criterio
 		criterioRepository.deleteAll();
 		
@@ -80,7 +81,7 @@ public class Instantiation implements CommandLineRunner {
 		criterioRepository.save(criterio);
 		
 		// Preparar classe Aposta
-		/*
+
 		volanteRepository.deleteAll();
 		
 		List<Aposta> apostas = new ArrayList<Aposta>();
