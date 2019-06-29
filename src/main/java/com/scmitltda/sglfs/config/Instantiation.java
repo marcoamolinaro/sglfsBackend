@@ -1,8 +1,15 @@
 package com.scmitltda.sglfs.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+
+import com.scmitltda.sglfs.domain.Criterio;
+import com.scmitltda.sglfs.repository.CriterioRepository;
 
 //import com.scmitltda.sglfs.repository.ResultadoRepository;
 
@@ -20,9 +27,58 @@ public class Instantiation implements CommandLineRunner {
 	
 	//@Autowired
 	//private ValorApostaRepository valorApostaRepository;
+	
+	@Autowired
+	private CriterioRepository criterioRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
+		// Preparando classe Criterio
+		criterioRepository.deleteAll();
+		
+		List<List<Integer>> criterios = new ArrayList<List<Integer>>();
+		
+		String name = "Fechamento";
+		
+		List<Integer> v1 = new ArrayList<Integer>();
+		
+		v1.add(15); // Quantidade de dezenas apostadas
+		v1.add(11); // Quantidade de dezenas fechamento
+		v1.add(10); // Quantidade mínima de acertos
+		
+		criterios.add(v1);
+		
+		List<Integer> v2 = new ArrayList<Integer>();
+
+		v2.add(15); // Quantidade de dezenas apostadas
+		v2.add(12); // Quantidade de dezenas fechamento
+		v2.add(8); // Quantidade mínima de acertos
+		
+		criterios.add(v2);
+		
+		List<Integer> v3 = new ArrayList<Integer>();
+		
+		v3.add(16); // Quantidade de dezenas apostadas
+		v3.add(12); // Quantidade de dezenas fechamento
+		v3.add(15); // Quantidade mínima de acertos
+
+		criterios.add(v3);
+
+		List<Integer> v4 = new ArrayList<Integer>();
+		
+		v4.add(17); // Quantidade de dezenas apostadas
+		v4.add(12); // Quantidade de dezenas fechamento
+		v4.add(17); // Quantidade mínima de acertos
+
+		criterios.add(v4);
+
+		Criterio criterio = new Criterio();
+		
+		criterio.setName(name);
+		criterio.setCriterio(criterios);
+		
+		criterioRepository.save(criterio);
+		
 		// Preparar classe Aposta
 		/*
 		volanteRepository.deleteAll();

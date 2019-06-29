@@ -44,13 +44,13 @@ public class Util {
 					qtde_matches++;
 				}
 			}
-			if (qtde_matches >= 13) {
+			if (qtde_matches >= 14) {
 				System.out.println("qtde_matches [" + qtde_matches + "]");
 				qtde_sorteios_13_pontos++;
 			}
-			if (qtde_sorteios_13_pontos > 0) {
+			if (qtde_sorteios_13_pontos > 8) {
 				valid = false;
-				break;
+				break; 
 			}
 			qtde_matches = 0;
 		}
